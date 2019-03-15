@@ -1,0 +1,294 @@
+<div class="content maxim" [style.height]=" w + 'px'">
+    <nav aria-label="breadcrumb bg-light">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Compras</li>
+            <li class="breadcrumb-item active" aria-current="page">Ordenes de Compra</li>
+        </ol>
+    </nav>
+    <div class="card">
+        <div class="card-header">
+            <div class="col-lg-12">
+                <div class="col-lg-5">
+                    <h5 class="card-title">Nueva Orden</h5>
+                    <h6 class="card-subtitle text-muted">Descripción</h6>
+                </div>
+                <div class="col-lg-7">
+                    <div class="nav justify-content-end">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><span class="fa fa-plus"></span> Nueva</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="inputEmail4">Inicio</label>
+                    <input type="date" class="form-control" id="inputEmail4" placeholder="Email" name="dateInit" [(ngModel)]="dateInit" (change)="loadDates();">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputPassword4">Final</label>
+                    <input type="date" class="form-control" id="inputPassword4" placeholder="Password" name="dateEnd" [(ngModel)]="dateEnd" (change)="loadDates();">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputPassword4">Folio</label>
+                    <input type="text" class="form-control" id="inputPassword4" placeholder="" name="folioLoad" [(ngModel)]="folioLoad" (keyup)="loadByFolio();">
+                </div>
+            </div>
+            <div id="accordion" *ngFor="let buy of orderBuy;let i = index">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            {{"#"+buy.folio+" "}}{{(buy.coments)?buy.coments:buy.comments}}{{" Fecha:"+(buy.dateCreate | date : "MM/dd/yyyy")}}
+
+                            <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true" aria-controls="collapseOne" (click)="loadProducts(buy._id,buy.providerid);">
+                    Mostrar +
+                    </button>
+                            <button class="btn btn-info">{{buy.status}}</button>
+                            <!-- <button class="btn btn-danger" title="Eliminar" (click)="delete(buy._id);"><span class="fa fa-close"></span></button> -->
+                        </h5>
+                    </div>
+
+                    <div id="{{'collapse'+i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="">Folio</label>
+                                    <p>{{(buy.number)?buy.number:buy.folio}}</p>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="">Proveedor</label>
+                                    <p>{{providerName}}</p>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="">Forma de pago</label>
+                                    <p>{{buy.currency}}</p>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="">Fecha Esperada</label>
+                                    <p>{{buy.waitDate | date : "MM/dd/yyyy"}}</p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="">Elaborada Por</label>
+                                    <p>{{buy.producedBy}}</p>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="">Fecha</label>
+                                    <p>{{buy.dateCreate}}</p>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="">Estatus</label>
+                                    <p>{{(buy.status)?buy.status:"Pagada"}}</p>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <button class="btn btn-danger" (click)="generatePdf('collapse'+i,buy.folio);"><span class="fa fa-print"> PDF</span></button>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="">Comentarios</label>
+                                    <p>{{(buy.coments)?buy.coments:buy.comments}}</p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>
+                                            <th>Importe</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let orderProducts of ProductsByOrder">
+                                            <td>{{orderProducts.name}}</td>
+                                            <td>{{orderProducts.quantity}}</td>
+                                            <td>{{orderProducts.price}}</td>
+                                            <td>{{orderProducts.price * orderProducts.quantity}}</td>
+                                        </tr>
+                                        <tr class="bg-dark text-light">
+                                            <td class="bg-light text-dark"></td>
+                                            <td class="bg-light text-dark"></td>
+                                            <td>Sub Total:</td>
+                                            <td>{{buy.subTotal}}</td>
+                                        </tr>
+                                        <tr class="bg-dark text-light">
+                                            <td class="bg-light text-dark"></td>
+                                            <td class="bg-light text-dark"></td>
+                                            <td>IVA:</td>
+                                            <td>{{buy.iva}}</td>
+                                        </tr>
+                                        <tr class="bg-dark text-light">
+                                            <td class="bg-light text-dark"></td>
+                                            <td class="bg-light text-dark"></td>
+                                            <td>Total:</td>
+                                            <td>{{buy.total}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="card">
+                    <div class="card-header">
+                        Orden de Compra
+                    </div>
+                    <div class="card-body">
+                        <form action="">
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="">Folio</label>
+                                    <input type="text" class="form-control" id="inputEmail4" placeholder="" name="folio" [(ngModel)]="model.folio">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="">Proveedor</label>
+                                    <select name="providerId" id="" class="form-control" [(ngModel)]="model.providerId">
+                                        <option *ngFor="let pro of proveedores" value="{{pro._id}}">{{(pro.NombreComercial)?pro.NombreComercial:pro.comercialName}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="">Fecha Esperada</label>
+                                    <input type="date" class="form-control" id="" placeholder="" name="waitDate" [(ngModel)]="model.waitDate">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="">C.C</label>
+                                    <select class="form-control" name="CC" [(ngModel)]="model.CC">
+                                        <option value="Almacen 1">Almacen 1</option>
+                                        <option value="Sistemas">Sistemas</option>
+                                        <option value="Administracion">Administracion</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="">Solicitado Por</label>
+                                    <select class="form-control" name="producedBy" [(ngModel)]="model.producedBy">
+                                        <option value="David Varela">David Varela</option>
+                                        <option value="Alan Mendoza">Alan Mendoza</option>
+                                        <option value="Juan Mendez">Juan Mendez</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="">Forma de pago</label>
+                                    <select name="currency" [(ngModel)]="model.currency" class="form-control">
+                                        <option value="CONT">Contado</option>
+                                        <option value="CREDIT">Credito</option>
+                                        <option value="TERM">Plazos</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2" *ngIf="model.currency == 'CREDIT'">
+                                    <label for="">Días</label>
+                                    <input class="form-control" type="date" name="periodInit" [(ngModel)]="model.periodInit">
+                                </div>
+                                <div class="form-group col-md-2" *ngIf="model.currency == 'TERM'">
+                                    <label for="">Inicio</label>
+                                    <input class="form-control" type="date" name="periodInit" [(ngModel)]="model.periodInit">
+                                </div>
+
+                                <div class="form-group col-md-2" *ngIf="model.currency == 'TERM'">
+                                    <label for="">Final</label>
+                                    <input class="form-control" type="date" name="periodInit" [(ngModel)]="model.periodInit">
+                                </div>
+                                <div class="form-group col-md-2" *ngIf="model.currency == 'TERM'">
+                                    <label for="">Periodo</label>
+                                    <input class="form-control" type="date" name="period" [(ngModel)]="model.period">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-1 float-right">
+                                    <button id="btn-change" class="btn btn-success" (click)="loadValidate()"><span class="fa fa-refresh"></span></button>
+                                </div>
+                                <div class="form-group col-md-4" *ngIf="validate == 0">
+                                    <label for="">Producto</label>
+                                    <select name="productId" id="" class="form-control" [(ngModel)]="productId" (change)="loadNameProduct()">
+                                        <option *ngFor="let art of loadArticle" value="{{art._id}}">{{art.title}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4" *ngIf="validate == 1">
+                                    <label for="">Producto</label>
+                                    <input type="text" class="form-control" id="" placeholder="" name="productName" [(ngModel)]="productName">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="">Cantidad</label>
+                                    <input type="text" class="form-control" id="" placeholder="" name="quantity" [(ngModel)]="productCant">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="">Precio</label>
+                                    <input type="text" class="form-control" id="" placeholder="" name="quantity" [(ngModel)]="price">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <label for="">IVA</label>
+                                    <select name="iva" id="iva" [(ngModel)]="model.iva" class="form-control">
+                                        <option value="5">5%</option>
+                                        <option value="10">10%</option>
+                                        <option value="11">11%</option>
+                                        <option value="16">16%</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <button class="btn btn-success" id="btn-add" (click)="addProduct();">Agregar</button>
+                                </div>
+                            </div>
+                            <div class="form-row" *ngIf="Products != ''">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let proa of Products">
+                                            <td>{{proa.name}}</td>
+                                            <td>{{proa.quantity}}</td>
+                                            <td>{{proa.price}}</td>
+                                            <td>{{proa.price * proa.quantity}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bg-dark text-light">Subtotal</td>
+                                            <td>{{subTotal}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bg-dark text-light">IVA:</td>
+                                            <td>{{model.iva+"%"}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bg-dark text-light">Total</td>
+                                            <td>{{total}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="">Observaciónes</label>
+                                    <textarea class="form-control" name="coments" id="" cols="50" rows="5" [(ngModel)]="model.coments"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" (click)="save()">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>

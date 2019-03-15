@@ -1,0 +1,53 @@
+.scrollito{
+    overflow: auto;
+    
+    padding-bottom: 4em;
+}
+
+ 
+.sidebar-content, .sidebar, .sidebar-nav, #idebarnav, .sidebar-link{
+    color: white;
+    background: none;
+}
+a > img {
+    height: 2em;
+    display:inline-flex;
+}
+.esconder{
+    margin-left: -100%;
+    position: relative;
+    transition-duration: 2s;
+    -webkit-transition-duration: 2s;
+    transition-timing-function: ease-in;
+}
+.sidebar-brand{
+    background-color: rgba(255, 255, 255, .9);
+    box-shadow: 0 7px 9px rgba(0, 0, 0, .2);
+    text-align: center;
+    padding-top: .75rem ;
+    padding-bottom: .75rem ;
+}
+.sidebar-header:first-child{
+    margin-top: 1em;
+}
+.fa{
+    margin-right: 1em;
+}
+
+
+.sidebar{
+    cursor: pointer;
+    background-image: linear-gradient(-20deg,  rgba(5, 44, 83, 1), rgb(17, 82, 148), rgba(20, 80, 140, 1), rgba(5, 44, 83, 1));
+}
+.link1:hover {
+    background-image: linear-gradient(110deg,  rgba(5, 44, 83, .0), rgba(22, 94, 165,.6));
+
+}
+ul > .link1:hover {
+    background: none;
+    background: rgba(22, 94, 165,.6);
+}
+
+.sidebar-item{
+    background-image: linear-gradient(-110deg,  rgba(5, 44, 83, .0), rgba(22, 94, 165,1));
+}

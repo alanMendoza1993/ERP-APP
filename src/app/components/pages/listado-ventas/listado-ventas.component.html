@@ -1,0 +1,126 @@
+<div class="content">
+    <h1 class="h3 mb-3">Ventas</h1>
+    
+    
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Lista de Ventas</h5>
+           
+        </div>
+        <div class="card-body">
+            <table id="datatables-basic" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr > 
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <!-- <th>Estatus</th> -->
+                        <th>Fecha</th>
+    
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of datas; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{data.bussinesName}}</td>
+                    <td>{{data.comment}}</td>
+                    <td>{{data.dateFinish | date : "MM/dd/yyyy" }}</td>
+                  </tr>
+                </tbody>
+    
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Usuario</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form ngNativeValidate class="modal-body" (submit)="guardarUsuario()">
+            
+          
+          <div class="card-body " >
+            <div class="row">
+              <div class="input-group mb-3 col">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Num. Nómina</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="#" aria-label="number" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3 col"> 
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="datePO">Nombre</span>
+                  </div>
+                  <input type="text" placeholder="Nombre(s)" class="form-control" >
+                </div>
+                <div class="input-group mb-3 col">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupSelect01">Apellidos</span>
+                  </div>
+                  <input type="text" placeholder="Pat y Mat" class="form-control" >
+                </div>
+                <div class="input-group mb-3 col">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Puesto</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="ordenNumber" aria-describedby="basic-addon1">
+                </div>
+  
+              </div>
+              <div class="row">
+              <div class="input-group mb-3 col">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Departamento</span>
+                  </div>
+                  <select class="form-control" >
+                    <option value="1">value1</option>
+                    <option value="2">value2</option>
+                  </select>
+                </div>
+                <div class="input-group mb-3 col">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="datePO">Tipo de Perfil</span>
+                </div>
+                <select class="form-control">
+                  <option value="1">value1</option>
+                  <option value="2">value2</option>
+                </select>
+              </div>
+                    <div class="input-group- mb-3 col">
+                    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input type="checkbox" aria-label="Checkbox for following text input">
+      </div>
+    
+    <input type="text" disabled placeholder="Habilitado" class="form-control" aria-label="Text input with checkbox">
+  </div>
+  
+  </div>              
+  
+              
+          </div>
+          <div class="row">
+          <div class="input-group mb-3 col-4">
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Correo</span>
+              </div>
+              <input type="email" class="form-control" aria-label="ordenNumber" aria-describedby="basic-addon1">
+            </div>
+          </div>
+      </div> 
+      <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success">Guardar Usuario</button>
+        </div>
+    </form>
+           
+          </div>
+        </div>
+      </div>

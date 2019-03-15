@@ -1,0 +1,145 @@
+.maxim {
+    height: 100%;
+    overflow: scroll;
+}
+
+#fixed {
+    top: auto;
+    margin: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+}
+
+form {
+    padding-bottom: 3em;
+}
+
+.card {
+    margin: 0;
+}
+
+.botonPro {
+    background-color: none;
+}
+
+.btn-link {
+    font-size: .5em;
+    float: right;
+}
+
+
+/* .agregarP {
+    font-size: 1em;
+    cursor: pointer;
+} */
+
+.agregarP,
+.quitarP {
+    font-size: 1em;
+    cursor: pointer;
+    min-width: 6em;
+}
+
+.semRed {
+    border-left: 1em solid rgb(223, 39, 39);
+    color: white !important;
+}
+
+.dateSale {
+    font-size: .6em;
+    font-weight: 700;
+    color: #444444;
+}
+
+.nameProviderOc {
+    background-color: #536891;
+    padding: 1em;
+}
+
+.cw {
+    color: white !important;
+    margin: 0;
+}
+
+.semYellow {
+    border-left: 1em solid rgb(220, 220, 52);
+    color: black;
+}
+
+.card-header {
+    padding: 0;
+}
+
+.bHeader {
+    padding: 1em;
+}
+
+.quitarP {
+    color: rgb(196, 21, 21);
+}
+
+.imagenLogo {
+    width: 100%;
+}
+
+.tabla {
+    text-align: center;
+    padding: .3em;
+}
+
+.iva {
+    width: 3em;
+}
+
+.totalesC {
+    width: 100%;
+}
+
+.totales {
+    /* display: flex;
+    justify-content: right; */
+    text-align: right;
+}
+
+.m {
+    margin: 0;
+}
+
+.refex {
+    display: flex;
+}
+
+.sep {
+    margin-top: .3em;
+}
+
+.secc {
+    background-color: rgb(192, 199, 202);
+    padding: .5em;
+}
+
+#proyectos {
+    display: flex;
+}
+
+.titleC {
+    font-weight: 700;
+}
+
+#detallesP {
+    width: 30em;
+    height: auto;
+    background-color: white;
+    margin: 0 1em;
+    position: relative;
+}
+
+#pieD {
+    bottom: 0;
+    padding: 1em;
+}
+
+h3 {
+    padding: .6em;
+}

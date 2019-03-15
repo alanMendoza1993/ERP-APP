@@ -1,0 +1,39 @@
+.maxim {
+    
+    overflow: scroll;
+    
+}
+.col-lg-5{
+    float: left;
+}
+.col-lg-7{
+    float: right;
+}
+#btn-add{
+    margin-top: 30px;
+}
+
+.botonPro {
+    background-color: none;
+}
+
+.btn-link {
+    font-size: 1em;
+    float: right;
+}
+.btn-info {
+    font-size: 1em;
+    float: right;
+}
+.btn-danger {
+    font-size: 1em;
+    float: right;
+    margin-right: 2px;
+}
+.collapse label{
+    font-weight: bold;
+}
+
+#btn-change{
+    margin-top: 28px; 
+}

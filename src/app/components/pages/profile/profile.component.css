@@ -1,0 +1,170 @@
+
+.content{
+    
+  display:block;
+}
+#primera{
+    width: 100%;
+    position: relative;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+#logo {
+  
+    background-color: #FF8000;
+   width: 12em;
+   max-height: 12em;
+   position: relative;
+   overflow: hidden;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .3em;
+/* border: .1em solid white; */
+   /*  box-shadow: .3em .3em 1.5em rgba(0, 0, 0, .3); */
+    
+}
+
+.alignLine{
+    display: inline-block;
+   margin: 0 .5em;
+
+}
+.company{
+    font-style: italic;
+    font-size: .7em;
+    color: #666666;
+}
+.tag{
+    margin-top: 1em;
+    border: .1em solid #31B404; 
+    border-radius: .4em;
+    height: 2em;
+    width: max-content;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    text-align: center;
+    vertical-align: center;
+    align-items: center;
+    margin-bottom: .3em;
+    
+    
+}
+
+
+/* .tag2{
+    
+    position: absolute;
+    bottom:0;
+    left: 15em;
+    margin-bottom: .3em;
+    
+} */
+.ico{
+    background-color: #31B404;
+    color: white;
+    height: 100%;
+    width: 2em;
+    display: flex;
+   
+    padding: .2em;
+}
+.tag1 .fa {
+    transform: rotate(270deg);
+}
+.number{
+    
+    width: auto;
+    margin: auto 1em;
+   
+}
+
+.number, .ico {
+    display:  inline-block;
+}
+
+#logo img {
+    position: relative;
+    
+    vertical-align: middle;
+    width: 100%;
+}
+#datos p {
+    margin: 0;
+    
+}
+.number > div{
+    height: 100%;
+    vertical-align: middle;
+}
+
+#historialCompras{
+ width: 80%;
+ margin-top: 1em;
+ background-color: white; 
+display: block;
+
+}
+
+#datos{
+    position: relative;
+    background-color: white;
+    padding: 1em;
+    border-radius: .3em;
+    width: 50%;
+    height: content;
+    min-height: 12em;
+    
+    
+}
+#score{
+    position: relative;
+   width: 12em;
+   background-color: #d13834;
+   border-radius: .3em;
+   min-height: 12em;
+   height: 12em;
+   max-height: 12em;
+   
+   margin-left: 1.2em;
+   
+}
+.scoretitle{
+    
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+    margin-top: .4em;
+    font-size: 1.8em;
+}
+.scoreletter{
+    position:  absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 8em;
+    color: white;
+}
+figure{
+    margin-bottom: 0;
+}
+
+.posiciones{
+    margin: .7em;
+    
+    display:  inline-block;
+    min-height: 12em;
+    vertical-align: middle;
+    align-content: center;
+    margin-top: 2em;
+    
+    
+
+}
+
+
+
+

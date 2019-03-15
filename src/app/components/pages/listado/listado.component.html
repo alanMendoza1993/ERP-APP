@@ -1,0 +1,67 @@
+<div class="content">
+    <h3>Proveedores Actuales</h3>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Lista de Proveedores</h5>
+            <h6 class="card-subtitle text-muted">Descripción</h6>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No Proveedor</th>
+                            <th scope="col">Razón Social</th>
+                            <th scope="col">Contacto</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Controles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+            
+                            <td> <span data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-warning"><img class="ico" src="../../../../assets/img/editar.png"/> Editar</span>
+                                <span data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger"><img class="ico" src="../../../../assets/img/eliminar.png"/> Eliminar</span>
+                            </td>
+            
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td> <span data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-warning"><img class="ico" src="../../../../assets/img/editar.png"/> Editar</span>
+                                <span data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger"><img class="ico" src="../../../../assets/img/eliminar.png"/> Eliminar</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                            <td> <span data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-warning"><img class="ico" src="../../../../assets/img/editar.png"/> Editar</span>
+                                <span data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger"><img class="ico" src="../../../../assets/img/eliminar.png"/> Eliminar</span>
+                            </td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content content">
+                            <h3>Proveedores</h3>
+                            <hr>
+                            <app-editar-proveedor></app-editar-proveedor>
+            
+            
+                        </div>
+            
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,173 @@
+<div class="content maxim" [style.height]=" w + 'px'"  >
+    <h3>Productos</h3>
+    <hr> 
+    <nav aria-label="breadcrumb bg-light">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Configuracion</li>
+            <li class="breadcrumb-item active" aria-current="page">Catalogos</li>
+            <li class="breadcrumb-item active" aria-current="page">productos Internos</li>
+        </ol>
+    </nav> 
+    <div class="card">
+        <div class="card-header">
+          <div class="col-lg-12">
+            <div class="col-lg-5">
+                <h5 class="card-title">Productos</h5>
+                <h6 class="card-subtitle text-muted">Productos internos de la empresa</h6>
+            </div>
+            <div class="col-lg-7">
+                <div class="nav justify-content-end">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><span class="fa fa-plus"></span> Nuevo</button>
+                </div> 
+            </div>
+          </div>  
+        </div>
+        <div class="card-body">
+          <hr>
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Descripcion</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of internalProducts; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.description}}</td>
+                  <td><button class="btn btn-danger" title="Eliminar" (click)="delete(product._id);"><span class="fa fa-close"></span></button></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+  
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+          <div class="card">
+              <div class="card-header">
+                Featured
+              </div>
+              <div class="card-body">
+                  <form action="">
+                      <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <label for="">Nombre</label>
+                            <input type="text" class="form-control" id="inputEmail4" placeholder="ID" name="name" [(ngModel)]="model.name">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="">Descripcion</label>
+                            <input type="text" class="form-control" id="" placeholder="Numero de Producto" name="description" [(ngModel)]="model.description">
+                          </div>
+                        </div>
+                        <h3>Parametros</h3>
+                        <hr>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="long" [(ngModel)]="model.long">
+                            Largo
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="high" [(ngModel)]="model.high">
+                            Alto
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="width" [(ngModel)]="model.width">
+                            Ancho
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="thickness" [(ngModel)]="model.thickness">
+                            Espesor
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="size" [(ngModel)]="model.size">
+                            Tamaño/Garganta
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="quantity" [(ngModel)]="model.quantity">
+                            Cantidad
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="parallel" [(ngModel)]="model.parallel">
+                            Paralelo/Paralelo
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="cover" [(ngModel)]="model.cover">
+                            Cubierta
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="molding" [(ngModel)]="model.molding">
+                            Molduras
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="accessories" [(ngModel)]="model.accessories">
+                            Accesorios
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="caliber" [(ngModel)]="model.caliber">
+                            Calibre
+                          </div>
+                          <div class="form-group col-md-4">
+                            <input type="checkbox" class="" id="" placeholder="Numero de Producto" name="install" [(ngModel)]="model.install">
+                            Instalacion
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" (click)="save()">Guardar</button>
+                        <!-- 
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <label for="">Material</label>
+                            <select class="form-control" name="material" [(ngModel)]="materialId" (change)="loadNameProduct();">
+                                <option *ngFor="let materials of material" value="{{materials._id}}" >{{materials.name}}</option>
+                            </select>
+                          </div> -->
+                          
+                          <!-- <div class="form-group col-md-2">
+                            <br>
+                            <button class="btn btn-success" id="btn-mat" (click)="addMaterial()"><span class="fa fa-plus"></span></button>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" (click)="save()" *ngIf="materialsInt != ''">Guardar</button> 
+                        <div class="form-group col-md-2">
+                            <input type="hidden" class="form-control" id="" placeholder="" name="nameMaterial" [(ngModel)]="nameMaterial">
+                          </div>  -->      
+                  </form>
+                  <!-- <div class="card text-black bg-light">
+                      <div class="card-body">
+                        <h5 class="card-title" *ngIf="materialsInt ==''">No hay Materiales agregados</h5>
+                        <table class="table table-hover" *ngIf="materialsInt != ''">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Material</th>
+                               <th>Cantidad</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let mat of materialsInt; let i = index">
+                              <th>{{i+1}}</th>
+                              <th>{{mat.name}}</th>
+                               <th>{{mat.many}}</th>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div> -->
+              </div>
+            </div>
+          
+      </div>
+    </div>
+  </div>

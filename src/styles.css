@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "assets/appstack-1-0-1/dist/css/app.css";
+.vcard-1 {
+    margin-top: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+body {
+    background-color: rgb(14, 44, 95);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

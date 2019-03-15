@@ -1,0 +1,17 @@
+.btnsupp{
+    position:  absolute;
+    right: 0;
+    top: 0;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.h3{
+    margin-left: 1em;
+    margin-top: 1em;  
+}
+
+table{
+    width: 98%;
+    margin: 1%;
+}

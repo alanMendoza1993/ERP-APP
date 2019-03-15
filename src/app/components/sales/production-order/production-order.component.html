@@ -1,0 +1,442 @@
+<div class="content maxim" [style.height]=" w + 'px'">
+    <form #f="ngForm" ngNativeValidate>
+
+
+        <div class="row">
+
+            <div class="col">
+                <h1>Nuevo Pedido de Ventas</h1>
+            </div>
+
+            <div class="col-1">
+                <button type="submit" class="btn btn-primary" (click)="save(f)"><span class="fa fa-floppy-o"></span><br> Guardar</button>
+            </div>
+        </div>
+        <nav aria-label="breadcrumb bg-light">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Produccion</li>
+                <li class="breadcrumb-item active" aria-current="page">Nuevo Pedido de Ventas</li>
+            </ol>
+        </nav>
+
+
+
+
+        <div class="card w-100 vcard-1">
+            <div class="card-body ">
+                <h5 class="card-title">General</h5>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Num. Pedido</span>
+                    </div>
+                    <input type="number" class="form-control placeInt" placeholder="#" name="noOrder" [(ngModel)]="model.noPetition" required="true">
+
+                    <!-- <div class="input-group-prepend">
+                        <span class="input-group-text" id="datePO">Fecha</span>
+                    </div>
+                    <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker> -->
+
+                    <!--  <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupSelect01">Sucursal</span>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01" name="branch" [(ngModel)]="model.branch">
+                        <option selected>Seleccionar</option>
+                        <option value="1">Matriz</option>
+                    </select> -->
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Proyecto</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Nombre del proyecto" name="nameProyect" [(ngModel)]="model.nameProyect" required>
+
+                    <!-- <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Num. Orden</span>
+                    </div>
+                    <input type="text" readonly="readonly" class="form-control" placeholder="123456" name="noOrder" [(ngModel)]="model.noOrder"> -->
+
+
+                </div>
+            </div>
+        </div>
+        <div class="card w-100 vcard-1">
+            <div class="card-body ">
+                <h5 class="card-title">Cliente</h5>
+
+                <div class="form-group col-md-6">
+                    <select class="form-control" name="client" id="client" [(ngModel)]="model.client" required>
+                        <option value="1">CLiente 1</option>
+                        <option value="2">CLiente 2</option>
+                        <option value="3">CLiente 3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card w-100 vcard-1">
+            <div class="card-body ">
+                <h5 class="card-title">Productos</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <select class="form-control" name="client" id="client" [(ngModel)]="modelInt.productId" (change)="loadProductinterno(modelInt.productId)">
+                                <option *ngFor="let data of productsLoad" value="{{data._id}}">{{data.name}}</option>
+                            </select>
+                    </div>
+
+                </div>
+                <div *ngFor="let data2 of productInt">
+                    <!-- <input type="hidden" class="form-control" id="" placeholder="" value="{{data2.name}}" name="nameProduct" [(ngModel)]="modelInt.nameProduct"> -->
+                    <div class="form-row">
+                        <div class="form-group col-md-2" *ngIf="data2.long == true">
+                            <label for="">largo</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="long" [(ngModel)]="modelInt.long">
+                        </div>
+                        <div class="form-group col-md-2" *ngIf="data2.high == true">
+                            <label for="">Alto</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="high" [(ngModel)]="modelInt.high">
+                        </div>
+                        <div class="form-group col-md-2" *ngIf="data2.width == true">
+                            <label for="">Ancho</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="width" [(ngModel)]="modelInt.width">
+                        </div>
+                        <div class="form-group col-md-2" *ngIf="data2.thickness == true">
+                            <label for="">Espesor</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="thickness" [(ngModel)]="modelInt.thickness">
+                        </div>
+                        <div class="form-group col-md-2" *ngIf="data2.size == true">
+                            <label for="">Tamaño/Garganta</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="size" [(ngModel)]="modelInt.size">
+                        </div>
+                        <div class="form-group col-md-2" *ngIf="data2.quantity == true">
+                            <label for="">Cantidad</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="quantity" [(ngModel)]="modelInt.quantity">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2" *ngIf="data2.parallel == true">
+                            <label for="">Paralelo/Paralelo</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="parallel" [(ngModel)]="modelInt.parallel">
+                        </div>
+                        <div class="form-group col-md-2" *ngIf="data2.cover == true">
+                            <label for="">Cubierta</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="cover" [(ngModel)]="modelInt.cover">
+                        </div>
+                        <div class="form-group col-md-2" *ngIf="data2.molding == true">
+                            <label for="">Molduras</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="molding" [(ngModel)]="modelInt.molding">
+                        </div>
+
+                        <div class="form-group col-md-2" *ngIf="data2.accessories == true">
+                            <label for="">Accesorios</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="accessories" [(ngModel)]="modelInt.accessories">
+                        </div>
+                        <div class="form-group col-md-2" *ngIf="data2.caliber == true">
+                            <label for="">Calibre</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="caliber" [(ngModel)]="modelInt.caliber">
+                        </div>
+                        <div class="form-group col-md-2" *ngIf="data2.install == true">
+                            <label for="">Instalacion</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="install" [(ngModel)]="modelInt.install">
+                        </div>
+                    </div>
+                    <button class="btn btn-success" id="btn-add" (click)="addProductInt()">+ Agregar</button>
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                            Productos
+                        </div>
+                        <div class="card-body">
+                            <h4 class="title" *ngIf="productsInt == ''">Sin productos</h4>
+                            <table class="table table-hover" *ngIf="productsInt != ''">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Productos</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let pr of productsInt; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{pr.nameProduct}}</td>
+                                        <td>{{pr.quantity}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Client -->
+        <!-- <div class="card w-100 vcard-1">
+            <div class="card-body ">
+    
+                <h5 class="card-title">Datos de cliente</h5>
+    
+    
+                <div class="form-row">
+                    <div class="form-group col-4">
+                        <label for="clientInput">Nombre/Razón Social</label>
+                        <input type="text" class="form-control" id="clientInput" placeholder="EMPRESA ACERERA SA de CV" name="bussinesName" [(ngModel)]="model.bussinesName">
+                    </div>   
+                    <div class="form-group col">
+                        <label for="codeInput">Clave Interna</label>
+                        <input type="email" class="form-control" id="codeInput" placeholder="123456" name="keyInt" [(ngModel)]="model.keyInt">
+                    </div>
+                    <div class="form-group col-2">
+                        <label for="poInput">Orden de Compra</label>
+                        <input type="email" class="form-control" id="poInput" placeholder="123456" name="orderName" [(ngModel)]="model.orderName">
+                    </div>
+    
+                    <div class="form-group col-6">
+                        <label for="deliveryDateInput">Comentarios</label>
+                        <input type="text" class="form-control" id="deliveryDateInputComment" name="comment" [(ngModel)]="model.comment">
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group col-3">
+                        <label for="poInput">Orden de Compra</label>
+                        <input type="email" class="form-control" id="poInput" placeholder="123456" name="orderName" [(ngModel)]="model.orderName">
+                    </div>
+    
+                    <div class="form-group col-6">
+                        <label for="deliveryDateInput">Comentarios</label>
+                        <input type="text" class="form-control" id="deliveryDateInputComment" name="comment" [(ngModel)]="model.comment">
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Dimensiones -->
+        <div class="card w-100 vcard-1">
+            <div class="card-body ">
+                <h5 class="card-title">Materiales</h5>
+
+
+                <div class="form-row">
+                    <div class="form-group col-4">
+
+                        <label for="familySelect">Nombre</label>
+                        <select class="custom-select" id="familySelect" name="productId" [(ngModel)]="productId" (change)="loadNameProduct();">
+                            <option *ngFor="let product of internalProducts" value="{{product._id}}">{{product.name}}</option>
+                        </select>
+                    </div>
+                    <!-- <div class="form-group col">
+                        <label for="deliveryDateInput">Cant. Ordenada</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">#</span></div>
+                            <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1" name="cantOrder" [(ngModel)]="model.cantOrder">
+                        </div>
+                    </div> -->
+
+                    <div class="form-group col-2" *ngIf="productId != ''">
+                        <label for="deliveryDateInput">Cant. a Producir</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">#</span></div>
+                            <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1" name="productCant" [(ngModel)]="productCant">
+                        </div>
+                    </div>
+                    <div class="form-group col-2">
+                        <div class="input-group mb-3">
+                            <button class="btn btn-success" id="btn-add" (click)="addProduct()" *ngIf="productId != ''">+ Agregar</button>
+                        </div>
+                    </div>
+
+                    <!--  <div class="form-group col">
+                        <label for="widthInput">Ancho</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">cm</span></div>
+                            <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1"  name="width" [(ngModel)]="model.productWidth">
+                        </div>
+                    </div>
+    
+    
+                    <div class="form-group col">
+                        <label for="deliveryDateInput">Largo</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">cm</span></div>
+                            <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1" name="productLong" [(ngModel)]="model.productLong">
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="form-group col">
+                        <label for="formInput">Formas</label>
+                        <input type="text" class="form-control" id="formInput" aria-label="number" aria-describedby="basic-addon1" name="productForm" [(ngModel)]="model.productForm">
+                    </div> -->
+
+                    <!-- <div class="form-group col">
+                        <label for="suitInput">Traje</label>
+                        <input type="text" class="form-control" id="suitInput" aria-label="number" aria-describedby="basic-addon1" name>
+                    </div> -->
+
+                    <!-- <div class="form-group col">
+                        <label for="deliveryDateInput">Peso</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">kg</span></div>
+                            <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1" name="productWeight" [(ngModel)]="model.productWeight">
+                        </div>
+                    </div>
+     -->
+
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        Materiales
+                    </div>
+                    <div class="card-body">
+                        <h4 class="title" *ngIf="products == ''">Sin Materiales</h4>
+                        <table class="table table-hover" *ngIf="products != ''">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Material</th>
+                                    <th>Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let p of products; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{p.name}}</td>
+                                    <td>{{p.quantity}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- <div class="form-row">
+                    <div class="form-group col">
+                        <label for="planeNumInput">Num. de Plano</label>
+                        <input type="email" class="form-control" id="planeNumInput" placeholder="123,456,189" name="noPlane" [(ngModel)]="model.noPlane">
+                    </div>
+    
+                    <div class="form-group col">
+                        <label for="familySelect">Familia</label>
+                        <select class="custom-select" id="familySelect" name="family" [(ngModel)]="model.family">
+                            <option selected>Seleccionar</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
+                    </div>
+    
+                    <div class="form-group col">
+                        <label for="calSelect">Calibre</label>
+                        <select class="custom-select" id="calSelect" name="caliber" [(ngModel)]="model.caliber">
+                            <option selected>Seleccionar</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
+                    </div>
+    
+                </div> -->
+            </div>
+        </div>
+        <!--Suajes-->
+        <!-- <div class="card w-100 vcard-1">
+            <div class="card-body ">
+                <h5 class="card-title">Suajes</h5>
+                <table class="table table-hover text-center table-bordered">
+                    <thead class="bg-dark text-light">
+                        <th>Clave</th>
+                        <th>Ancho Suaje</th>
+                        <th>Largo Suaje</th>
+                        <th>Formas</th>
+                        <th>Ancho</th>
+                        <th>Largo</th>
+                        <th>Fac.Hojeadora</th>
+                    </thead>
+                    <tbody>
+                        <td>1234</td>
+                        <td>50 cm</td>
+                        <td>60 cm</td>
+                        <td>Cuadrada</td>
+                        <td>50 cm</td>
+                        <td>50 cm</td>
+                        <td>1</td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        Inventario
+        <div class="card w-100 vcard-1">
+                <div class="card-body ">
+                    <h5 class="card-title">Inventario</h5>
+                    <table class="table table-hover table-bordered text-center">
+                        <thead class="bg-dark text-light">
+                            <th>Folio</th>
+                            <th>Fecha</th>
+                            <th>Papel</th>
+                            <th>Ancho</th>
+                            <th>Largo</th>
+                            <th>Cal.</th>
+                            <th>Bod.</th>
+                            <th>Ubic.</th>
+                            <th>Ex.</th>
+                            <th>Sep.</th>
+                            <th>Disp.</th>
+                            <th>L.C %</th>
+                            <th>Rack</th>
+                        </thead>
+                        <tbody>
+                            <td>1234</td>
+                            <td>50 cm</td>
+                            <td>60 cm</td>
+                            <td>Cuadrada</td>
+                            <td>50 cm</td>
+                            <td>50 cm</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tbody>
+                    </table>
+                </div>
+            </div> -->
+
+        <!--Observaciones-->
+
+        <div class="card w-100 vcard-1">
+            <div class="card-body ">
+                <h5 class="card-title">Materiales</h5>
+
+                <div class="form-group col-6">
+                    <label for="compromiseDateInput">Fecha Compromiso:</label>
+                    <input type="date" placeholder="Datepicker" class="form-control" name="dateFinish" [(ngModel)]="model.dateFinish" required>
+                </div>
+
+                <!-- <div class="form-group col-auto">
+                    <div class="form-check form-check-inline ">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" name="cut" [(ngModel)]="model.cut">
+                        <label class="form-check-label" for="inlineCheckbox1">Requiere corte de impresión</label>
+                    </div>
+    
+                    <div class="form-check form-check-inline ">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" name="immex" [(ngModel)]="model.immex">
+                        <label class="form-check-label" for="inlineCheckbox1">IMMEX</label>
+                    </div> -->
+
+                <!-- <div class="form-check form-check-inline ">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox1">Esta orden es hija de otra orden ?</label>
+                    </div> -->
+
+
+                <!-- <div class="form-group col-6">
+                    <label for="compromiseDateInput">Fecha de entrega:</label>
+                    <input type="date" placeholder="Datepicker" class="form-control" name="dateFinish" [(ngModel)]="model.dateFinish">
+                </div> -->
+            </div>
+        </div>
+
+
+    </form>
+</div>

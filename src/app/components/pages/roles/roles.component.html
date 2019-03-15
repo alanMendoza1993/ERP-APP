@@ -1,0 +1,251 @@
+<div class="content maxim" [style.height]=" w + 'px'">
+    <div class="clearfix">
+        <form class="form-inline float-right mt--1 d-none d-md-flex">
+            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="align-middle" data-feather="plus"></i>Agregar</button>
+        </form>
+        <h1 class="h3 mb-3 pad">Tipo de Perfil</h1>
+    </div>
+    <hr>  
+    <form class="card">
+        <table class="table">
+            <thead>
+              <tr>
+                
+                <th scope="col">Nombre</th>
+                <th scope="col">Cantidad Usuarios</th>
+                <th scope="col">Area</th>
+                <th scope="col">Estatus</th>
+                <th scope="col">Fecha de Creación</th>
+    
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let usuario of usuarios">
+                <th scope="row">{{usuario.nomina}}</th>
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.departamento}}</td>
+                <td>{{usuario.puesto}}</td>
+                <td style="color: green">En Linea</td>
+                <td style="color: green">Habilitado</td>
+              </tr>
+              <tr >
+                  <td>Sistemas Nuevo Ingreso</td>
+                  <td>2</td>
+                  <td>Sistemas</td>
+                  <td style="color: green">Habilitado</td>
+                  
+                  <td >60/02/2016 10:20:23</td>
+                </tr>
+            
+            </tbody>
+          </table>
+        </form>
+</div>
+
+<!-- Modal Crear Rol -->
+<!-- Modal Crear Rol -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Crear Tipo de Perfil</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form ngNativeValidate [(formGroup)]="forma" class="modal-body" (submit)="guardarUsuario()">
+        
+      
+      <div class="card-body " >
+       
+          <form>
+              <input  type="ntext" name="nombre" placeholder="Nombre del Perfil.." class="form-control pad" required>
+        
+          <div class="card-columns">
+            
+          <div class=" card bg-light  mar" style="max-width: 18rem;">
+              <div class="card-header">
+                <div class="form-check form-check-inline ">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1">
+                  <label class="form-check-label" for="inlineCheckbox1"> Inicio</label>
+              </div>
+             
+          </div> </div>
+           
+          
+          <div class="card bg-light mb-3 col-md-3 mar" style="max-width: 18rem;">
+            <div class="card-header">
+              <div class="form-check form-check-inline ">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1"> Ventas</label>
+            </div>
+            </div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="card-text" for="inlineCheckbox1">Nueva Operación</label>
+            </div>
+            <div class="form-check form-check-inline row">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="card-text" for="inlineCheckbox1">Listado</label>
+          </div>
+                 </div>
+          </div>
+          <div class="card bg-light mb-3 col-md-3 mar" style="max-width: 18rem;">
+            <div class="card-header">
+              <div class="form-check form-check-inline ">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1">
+                <label class="form-check-label" for="inlineCheckbox1">Planeación</label>
+            </div>
+            </div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="card-text" for="inlineCheckbox1">Recepción</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="card-text" for="inlineCheckbox1">Cálculo</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="card-text" for="inlineCheckbox1">Materia Prima</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="card-text" for="inlineCheckbox1">Notificación</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="card-text" for="inlineCheckbox1">Listado</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="card-text" for="inlineCheckbox1">Entrantes</label>
+        </div>
+                 </div>
+          </div>
+          <div class="card bg-light mb-3 col-md-3 mar" style="max-width: 18rem;">
+            <div class="card-header">
+              <div class="form-check form-check-inline ">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" >
+                <label class="form-check-label" for="inlineCheckbox2"> Proveedores</label>
+            </div>
+            </div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="card-text" for="inlineCheckbox1">Orden de Compra</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="card-text" for="inlineCheckbox1">Orden de Compra</label>
+          </div>
+                 </div>
+          </div>
+          <div class="card bg-light mb-3 col-md-3 mar" style="max-width: 18rem;">
+            <div class="card-header">
+              <div class="form-check form-check-inline ">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option1">
+                <label class="form-check-label" for="inlineCheckbox4"> Pantallas</label>
+            </div>
+            </div>
+            
+          </div>
+          <div class="card bg-light mb-3 col-md-3 mar" style="max-width: 18rem;">
+            <div class="card-header">
+              <div class="form-check form-check-inline ">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" >
+                <label class="form-check-label" for="inlineCheckbox2"> Producción</label>
+            </div>
+            </div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="card-text" for="inlineCheckbox1">Reporte</label>
+            </div>
+                 </div>
+          </div>
+          <div class="card bg-light mb-3 col-md-3 mar" style="max-width: 18rem;">
+            <div class="card-header">
+              <div class="form-check form-check-inline ">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" >
+                <label class="form-check-label" for="inlineCheckbox2"> Inventario</label>
+            </div>
+            </div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="card-text" for="inlineCheckbox1">Gestión de Inventario</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="card-text" for="inlineCheckbox1">Gestión de Artículos</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="card-text" for="inlineCheckbox1">Reportes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="card-text" for="inlineCheckbox1">Otro</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="card-text" for="inlineCheckbox1">Lotes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="card-text" for="inlineCheckbox1">Código de barra</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="card-text" for="inlineCheckbox1">Materia Prima</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="card-text" for="inlineCheckbox1">Costos</label>
+        </div>
+                 </div>
+          </div>
+          <div class="card bg-light mb-3 col-md-3 mar" style="max-width: 18rem;">
+            <div class="card-header">
+              <div class="form-check form-check-inline ">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" >
+                <label class="form-check-label" for="inlineCheckbox2"> Configuración</label>
+            </div>
+            </div>
+            <div class="card-body">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="card-text" for="inlineCheckbox1">Usuarios</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="card-text" for="inlineCheckbox1">Roles</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="card-text" for="inlineCheckbox1">Seguridad</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="card-text" for="inlineCheckbox1">Catálogo</label>
+        </div>
+                 </div>
+          </div>
+          
+        
+        
+        </div>
+        </form>
+  </div> 
+  <div class="modal-footer">
+      <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+      <button type="submit" class="btn btn-success">Guardar Usuario</button>
+    </div>
+</form>
+       
+      </div>
+    </div>
+  </div>

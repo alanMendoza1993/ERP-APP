@@ -1,0 +1,251 @@
+<div class="content maxim" [style.height]=" w + 'px'"  >
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Nueva Orden</h5>
+            <h6 class="card-subtitle text-muted">Descripción</h6>
+        </div>
+        <div class="card-body">
+            
+            <form ngNativeValidate [(formGroup)]="forma" (submit)="crearOrden()">
+                <div class="form-row">
+                    <div class="col-md-2 mb-3">
+                        <label for="noPedido">No. Pedido</label>
+                        <input formControlName="noPedido" type="number" name="noPedido" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="fecha">Fecha</label>
+                        <input formControlName="fecha" type="date" class="form-control" name="fecha" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="ubicacion">Ubicación</label>
+                        <input formControlName="ubicacion" type="text" class="form-control" name="ubicacion" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+        
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="noPedido">No. Orden</label>
+                        <input formControlName="noOrden" type="number" name="noOrden" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group gris-claro">
+                    <div class="form-row ">
+                        <div class="col-md-3 mb-3">
+                            <label for="cliente">Cliente</label>
+                            <input formControlName="cliente" type="number" name="cliente" class="form-control" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="fecha">Artículo</label>
+                            <input formControlName="articulo" type="date" class="form-control" name="articulo" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="claveInterna">Cve Interna</label>
+                            <input formControlName="claveInterna" type="number" name="claveInterna" class="form-control" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="ordenCompra">Orden de Compra</label>
+                            <input formControlName="ordenCompra" type="text" class="form-control" name="ordenCompra" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+        
+                        </div>
+        
+                    </div>
+                    <div class="form-row ">
+        
+        
+        
+                        <div class="col-md-3 mb-3">
+                            <label for="fechaEntrega">Fecha de Entrega</label>
+                            <input formControlName="fechaEntrega" type="text" class="form-control" name="fechaEntrega" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+        
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="nota">Nota</label>
+                            <textarea formControlName="nota" type="text-area" name="nota" class="form-control"></textarea>
+        
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-2 mb-2">
+                        <label for="cantidadOrdenada">Cant. Ordenada</label>
+                        <input formControlName="cantidadOrdenada" type="number" name="cantidadOrdenada" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label for="cantidadProducir">Cant. A Producir</label>
+                        <input formControlName="cantidadProducir" type="date" class="form-control" name="cantidadProducir" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-1 mb-2">
+                        <label for="ancho">Ancho</label>
+                        <input formControlName="ancho" type="text" class="form-control" name="ancho" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+        
+                    </div>
+                    <div class="col-md-1 mb-2">
+                        <label for="largo">Largo</label>
+                        <input formControlName="largo" type="number" name="largo" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-1 mb-2">
+                        <label for="formas">Formas</label>
+                        <input formControlName="formas" type="number" name="formas" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-1 mb-2">
+                        <label for="tiraje">Tiraje</label>
+                        <input formControlName="tiraje" type="number" name="tiraje" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-1 mb-2">
+                        <label for="kilos">Kilos</label>
+                        <input formControlName="kilos" type="number" name="kilos" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-1 mb-2">
+                        <label for="noPlano">No. Plano</label>
+                        <input formControlName="noPlano" type="number" name="noPlano" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3 form-group">
+                        <label for="familia">Familia</label>
+                        <select formControlName="familia" class="custom-select" name="familia" required>
+                                <option value="1">Familia 1</option>
+                                <option value="2">Familia 2</option>
+                            </select>
+                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                    </div>
+                    <div class="col-md-2 mb-3 form-group">
+                        <label for="calibre">Calibre</label>
+                        <select formControlName="calibre" class="custom-select" name="calibre" required>
+                                    <option value="1">Calibre 1</option>
+                                    <option value="2">Calibre 2</option>
+                                </select>
+                        <div class="invalid-feedback">Example invalid custom select feedback</div>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label for="fechaCompromiso">Fecha Compromiso</label>
+                        <input formControlName="fechaCompromiso" type="date" name="fechaCompromiso" class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+        
+                    <div class="col-8">
+                        <h3>Suajes</h3>
+                        <table class="table ">
+        
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                        <div class="col-4">
+                            <div class="form-group chekers">
+                                <div class="form-check">
+                                    <input formControl="" name="requiereCorte" class="form-check-input" type="checkbox">
+                                    <label for="requiereCorte" class="form-check-label" for="gridCheck">
+                                        Requiere Corte En Impresión
+                                        </label>
+                                </div>
+                                <div class="form-check">
+                                    <input formControl="" name="immex" class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label for="immex" class="form-check-label" for="gridCheck">
+                                            IMMEX
+                                            </label>
+                                </div>
+                                <div class="form-check">
+                                    <input formControl="" name="ordenHija" class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label for="ordenHija" class="form-check-label" for="gridCheck">
+                                                Orden Hija de Otra Orden
+                                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="form-row">
+                    <span (click)="guardarProducto()" class="btn btn-success"><img class="ico" src="../../../../assets/img/guardar.png"/> Agregar</span>
+                    <span (click)="guardarProducto()" class="btn btn-warning"><img class="ico" src="../../../../assets/img/tres-flechas-circulando.png"/> Limpiar</span>
+                </div>
+        
+        
+            </form>
+            
+        </div>
+    </div>
+
+    
+</div>

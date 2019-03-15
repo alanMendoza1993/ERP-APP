@@ -1,0 +1,35 @@
+.maxim {
+    height: 100%;
+    overflow: scroll;
+    
+}
+
+.headN{
+    padding: 0.5em;
+
+}
+.form-check-label{
+    color: black;
+    font-size: 1.2em;
+}
+
+
+.mar{
+    margin: 1em;
+}
+.card{
+    padding: 0;
+    
+    
+}
+.card-body{
+   
+}
+.form-check-inline{
+    display: block;
+    margin-bottom: .5em;
+    margin-left: 1em;
+}
+.pad{
+    margin: 1em
+}

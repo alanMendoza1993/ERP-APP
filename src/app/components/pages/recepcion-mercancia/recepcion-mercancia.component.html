@@ -1,0 +1,259 @@
+<div class="content maxim" [style.height]=" w + 'px'" *ngIf="pageReady">
+  <form>
+
+
+    <div class="row">
+
+        <div class="col">
+            <h1>Recepción de Mercancía</h1>
+        </div>
+
+        <div class="col-1">
+            <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
+        <div class="col-1">
+            
+        </div>
+        
+    </div>
+
+
+
+
+
+    <div class="card w-100 vcard-1">
+        <div class="card-body ">
+            <h5 class="card-title">General</h5>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Num. Orden</span>
+                </div>
+                <input type="number"  aria-label="ordenNumber" aria-describedby="basic-addon1">
+
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Fecha. Recepcion</span>
+                </div>
+                <input type="text" class="form-control" readonly [placeholder]="desglosada" aria-label="number" aria-describedby="basic-addon1">
+
+               
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupSelect01">Almacen</span>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+              <option selected>Seleccionar</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="moneda">Moneda</span>
+            </div>
+            <select class="custom-select" id="inputGroupSelect02">
+                <option selected>Seleccionar</option>
+                <option value="1">Pesos Mexicanos</option>
+                <option value="2">Dolares Americanos</option>
+                <option value="3">Euros</option>
+              </select>
+
+              
+
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Recibe</span>
+                </div>
+                <input type="text"  aria-label="ordenNumber" placeholder=" nombre.." aria-describedby="basic-addon1">
+
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Entrega</span>
+                </div>
+                <input type="text"  aria-label="ordenNumber" placeholder=" nombre.." aria-describedby="basic-addon1">
+            </div>
+        </div>
+    </div>
+
+    <!-- Client -->
+    <div class="card w-100 vcard-1">
+        <div class="card-body ">
+
+            <h5 class="card-title">Proveedor</h5>
+
+            <div class="form-group col">
+                <label for="articleInput">No. Proveedor</label>
+                <input type="number" class="form-control" id="articleInput" placeholder="numero de Proveedor">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-7">
+                    <label for="clientInput">Nombre/Razón Social</label>
+                    
+            <select class="custom-select" id="inputGroupSelect02">
+                <option selected>Seleccionar</option>
+                <option value="1">Proveedor 1</option>
+                <option value="2">Proveedor 2</option>
+                <option value="3">Proveedor 3</option>
+              </select>
+                </div>
+
+                <div class="form-group col">
+                    <label for="articleInput">RFC</label>
+                    <input type="text" class="form-control" id="articleInput" placeholder="">
+                </div>
+
+                <div class="form-group col">
+                    <label for="codeInput">Dias de Credito</label>
+                    <input type="number" class="form-control" id="codeInput" >
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <!-- Dimensiones -->
+    <div class="card w-100 vcard-1">
+        <div class="card-body ">
+            <h5 class="card-title">Documento</h5>
+
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="deliveryDateInput">Archivo</label>
+                    
+                        <input type="file" class="nuestroinput form-control" >
+                    
+                </div>
+
+               
+
+                <div class="form-group col">
+                    <label for="deliveryDateInput">No. Documento</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">cm</span></div>
+                        <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+
+               
+
+
+                <div class="form-group col">
+                    <label for="deliveryDateInput">Fecha de Expedición</label>
+                    
+                       <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1" bsDatepicker>
+                    
+                </div>
+<!-- 
+                <div class="form-group col">
+                    <label for="formInput">Formas</label>
+                    <input type="text" class="form-control" id="formInput" aria-label="number" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="form-group col">
+                    <label for="suitInput">Traje</label>
+                    <input type="text" class="form-control" id="suitInput" aria-label="number" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="form-group col">
+                    <label for="deliveryDateInput">Peso</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">kg</span></div>
+                        <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1">
+                    </div>
+                </div> -->
+
+
+            </div>
+
+            
+        </div>
+    </div>
+
+    <!--Observaciones-->
+
+    <div class="card w-100 vcard-1">
+        <div class="card-body ">
+            <h5 class="card-title">Producto</h5>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="deliveryDateInput">Descripcion</label>
+                    
+                        <input type="text" class="nuestroinput form-control" >
+                    
+                </div>
+
+               
+
+                <div class="form-group col">
+                    <label for="deliveryDateInput">Cantidad Recibida</label>
+                    
+                        <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1">
+                    
+                </div>
+                <div class="form-group col">
+                    <label for="deliveryDateInput">Cantidad Factura</label>
+                    
+                        <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1">
+                    
+                </div>
+               
+
+
+                <div class="form-group col">
+                    <label for="deliveryDateInput">Unidad de Medida</label>
+                    
+                    <select class="custom-select" id="inputGroupSelect02">
+                        <option selected>Seleccionar</option>
+                        <option value="1">unidad 1</option>
+                        <option value="2">unidad 2</option>
+                        <option value="3">unidad 3</option>
+                      </select>
+                </div>
+<!-- 
+                <div class="form-group col">
+                    <label for="formInput">Formas</label>
+                    <input type="text" class="form-control" id="formInput" aria-label="number" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="form-group col">
+                    <label for="suitInput">Traje</label>
+                    <input type="text" class="form-control" id="suitInput" aria-label="number" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="form-group col">
+                    <label for="deliveryDateInput">Peso</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">kg</span></div>
+                        <input type="text" class="form-control" aria-label="number" aria-describedby="basic-addon1">
+                    </div>
+                </div> -->
+
+
+            </div>
+           
+
+            <div class="form-group col-auto">
+                
+
+                
+
+                <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Es complemento de una orden</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Suajes-->
+   <!--  <div class="card-body vcard-1">
+        <div class="card-body ">
+            <h5 class="card-title">Suajes</h5>
+            <div class="col-4">.col-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
+            <div class="col-6 offset-md-4">.col-6<br>Subsequent columns continue along the new line.</div>
+        </div>
+    </div> -->
+
+</form>
+</div>

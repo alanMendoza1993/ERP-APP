@@ -1,0 +1,130 @@
+<div class="content" >
+      <div class="clearfix">
+          <form class="form-inline float-right mt--1 d-none d-md-flex">
+              <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="align-middle" data-feather="plus"></i>Agregar</button>
+          </form>
+          <h1 class="h3 mb-3">Usuarios</h1>
+      </div>
+    <form class="card">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#Nómina</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Puesto</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Habilitado</th>
+
+          </tr>
+        </thead>
+        <tbody>
+        
+        </tbody>
+      </table>
+    </form>
+  </div>
+<!-- Modal Crear Usuario -->
+<!-- Modal Crear Usuario -->
+<!-- Modal Crear Usuario -->
+  <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form  class="modal-body" >
+          
+        
+        <div class="card-body " >
+          <div class="row">
+            <div class="input-group mb-3 col">
+                <div class="input-group-prepend">
+                    <span class="input-group-text fa fa-folder-o" id="basic-addon1"></span>
+                </div>
+                <input type="text" class="form-control" placeholder="# Numero de Nomina" aria-label="number" aria-describedby="basic-addon1" [(ngModel)]="model.roster" name="roster">
+              </div>
+              <div class="input-group mb-3 col">
+                <div class="input-group-prepend">
+                    <span class="input-group-text fa fa-envelope-o" id="basic-addon1"></span>
+                </div>
+                <input type="email" class="form-control" placeholder="Correo Electronico" aria-label="ordenNumber" aria-describedby="basic-addon1" [(ngModel)]="model.email" name="email">
+              </div>
+              <!-- <div class="input-group mb-3 col"> 
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="datePO">Nombre</span>
+                </div>
+                <input type="text" formControlName="nombre" placeholder="Nombre(s)" class="form-control" >
+              </div>
+              <div class="input-group mb-3 col">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupSelect01">Apellidos</span>
+                </div>
+                <input type="text" placeholder="Pat y Mat" formControlName="apellido" class="form-control" >
+              </div>
+              <div class="input-group mb-3 col">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Puesto</span>
+                </div>
+                <input type="text" class="form-control" formControlName="puesto" aria-label="ordenNumber" aria-describedby="basic-addon1">
+              </div> -->
+
+            </div>
+            <div class="row">
+            <!-- <div class="input-group mb-3 col">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Departamento</span>
+                </div>
+                <select class="form-control" formControlName="departamento">
+                  <option value="1">value1</option>
+                  <option value="2">value2</option>
+                </select>
+              </div> -->
+              <div class="input-group mb-3 col">
+              <div class="input-group-prepend">
+                <span class="input-group-text fa fa-users" id="datePO"></span>
+              </div>
+              <select class="form-control" [(ngModel)]="model.perfilType" name="perfilType">
+                <option value="0">Tipo de Usuario</option>
+                <option value="1">value1</option>
+                <option value="2">value2</option>
+              </select>
+            </div>
+            <div class="input-group- mb-3 col">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="checkbox" aria-label="Checkbox for following text input" [(ngModel)]="model.status" name="status">
+                </div>
+              
+              <input type="text" disabled placeholder="Habilitado" class="form-control" aria-label="Text input with checkbox">
+            </div>
+
+            </div>    
+        </div>
+        <div class="row">          
+          <div class="input-group mb-3 col">
+            <div class="input-group-prepend">
+                <span class="input-group-text fa fa-user" id="basic-addon1"></span>
+            </div>
+            <input type="text" class="form-control" placeholder="UserName" aria-label="number" aria-describedby="basic-addon1" [(ngModel)]="model.userName" name="status">
+          </div>
+          <div class="input-group mb-3 col">
+            <div class="input-group-prepend">
+                <span class="input-group-text fa fa-lock" id="basic-addon1"></span>
+            </div>
+            <input type="password" class="form-control" placeholder="Contraseña" aria-label="ordenNumber" aria-describedby="basic-addon1" [(ngModel)]="model.password" name="password">
+          </div>    
+      </div>
+    </div> 
+    <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success" (click)="save()">Guardar Usuario</button>
+      </div>
+  </form>
+         
+        </div>
+      </div>
+    </div>

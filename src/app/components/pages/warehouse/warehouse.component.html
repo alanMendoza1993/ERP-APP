@@ -1,0 +1,160 @@
+<div class="content maxim" [style.height]=" w + 'px'"  >
+  <h3>Almacén</h3>
+  <hr>  
+  <div class="card">
+      <div class="card-header">
+        
+          
+              <form class="text-center table-responsive">
+                  <div class="row form-group" id="form-search">
+                    
+                    
+                      
+                          <div class="input-group mb-3 col-2">
+                          <label for="ID" class="col-form-label">ID</label>
+                          
+                            <input type="number" class="form-control" id="ID" placeholder="#">
+                          
+                          </div>
+                    
+                    
+                          <div class="input-group mb-3 col">
+                        <label for="name" class="col-form-label">Nombre</label>
+                        
+                            <input type="text" class="form-control" id="name" placeholder="">
+                          
+                          </div>
+                      
+                    
+                    
+                          <div class="input-group mb-3 col">
+                          <label for="branch" class="col-form-label">Sucursal</label>
+                          
+                            <select name="branch" id="branch" class="form-control">
+                              <option value="0"></option>
+                              <option value="1">Matriz</option>
+                            </select>
+                          
+                          </div>
+                      
+                    
+                          <div class="input-group mb-3 col">
+                            <label for="user" class="col-form-label">Encargado</label>
+                            
+                              <select name="user" id="user" class="form-control">
+                                <option value="0"></option>
+                                <option value="1">Juan Perez</option>
+                                <option value="1">Alan Garcia</option>
+                              </select>
+                            
+                          </div>
+                          <div class="input-group mb-3 col botones">
+                              <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span>   Buscar</button>   
+                              <button class="btn btn-success" data-toggle="modal" data-target="#modalAlmacen"><span class="fa fa-plus"></span> Nuevo</button>
+
+                            </div>
+                          
+                             
+                      </div>
+                        
+                      
+                  
+                </form>
+          
+          
+         
+      </div>
+      <div class="card-body">          
+        
+          
+          
+        
+          <table class="text-center table-hover table">
+            <thead class="bg-dark text-light">
+              <tr>
+                <th>#</th>
+                <th>Almacen</th>
+                <th>Sucursal</th>
+                <th>Direccion</th>
+                <th>Encargado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr [routerLink]="['/inventory/warehouse/products']">
+                <td>1</td>
+                <td>Almacen_ejemplo</td>
+                <td>Matriz</td>
+                <td>Monterrey</td>
+                <td>Francisco Perez leon</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-lg" id="modalAlmacen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Agregar Almacen</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="input-group mb-3 col">
+                  <label for="name" class="col-sm-2 col-form-label">Nombre</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Nombre">
+                  </div>
+                </div>
+                <div class="input-group mb-3 col">
+                  <label for="dir" class="col-sm-2 col-form-label">Direccion</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="dir" placeholder="Direccion">
+                  </div>
+                </div>
+                <div class="input-group mb-3 col">
+                    <label for="tel" class="col-sm-2 col-form-label">Telefono</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" id="tel" placeholder="Telefono">
+                    </div>
+                </div>
+                <div class="input-group mb-3 col">
+                    <label for="branch" class="col-sm-2 col-form-label">Sucursal</label>
+                    <div class="col-sm-6">
+                      <select name="branch" id="branch" class="form-control">
+                        <option value="0"></option>
+                        <option value="1">Matriz</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="input-group mb-3 col">
+                    <label for="user" class="col-sm-2 col-form-label">Encargado</label>
+                    <div class="col-sm-6">
+                      <select name="user" id="user" class="form-control">
+                        <option value="0"></option>
+                        <option value="1">Juan Perez</option>
+                        <option value="1">Alan Garcia</option>
+                      </select>
+                    </div>
+                    
+                </div>
+                <div class="input-group mb-3 col">
+                    <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span><br>Guardar</button>
+                  </div>
+              </div>
+                  
+                
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

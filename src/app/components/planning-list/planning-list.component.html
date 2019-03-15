@@ -1,0 +1,40 @@
+<div class="content">
+<h1 class="h3 mb-3">
+
+    Planeación</h1>
+
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Cola de Planeación</h5>
+        <h6 class="card-subtitle text-muted">Descripción</h6>
+    </div>
+    <div class="card-body">
+        <table id="datatables-basic" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Estatus</th>
+                    <th>Fecha</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor=" let row of planingList">
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.description }}</td>
+                    <td>{{ row.status }}</td>
+                    <td>{{ row.date }}</td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+</div>

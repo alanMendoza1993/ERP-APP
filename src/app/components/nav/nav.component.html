@@ -1,0 +1,49 @@
+<nav class="sidebar dark scrollito" [style.height]=" w + 'px'"   >
+    <div class="sidebar-content">
+        <a class="sidebar-brand" href="index.html">
+            <img src="../../../assets/img/logo.png" height="40">
+            
+        </a>
+
+
+
+        <ul id="sidebarnav" class="sidebar-nav" >
+
+            <li class="sidebar-header">
+                Módulos
+            </li>
+            
+            <li *ngFor=" let module of user[0].modules; let i = index" aria-expanded="false" (click)="cambiar(i)">
+                <a class="has-arrow waves-effect waves-dark"  class="sidebar-link hide-menu link1">
+                    <i class="align-middle" data-feather="sliders" *ngIf="module.subModuls?.length > 0"></i>
+                    <i class="align-middle" data-feather="sliders" ></i> <span class="align-middle {{module.icon}}"></span>{{module.name }}
+                    <!--<span class="sidebar-badge badge badge-primary">6</span>-->
+                </a>
+
+                <ul id="{{ module.alias }}" *ngIf="module.subModuls?.length > 0" [ngClass]="{'collapse': !numero[i]}" aria-expanded="false" class="collapse list-unstyled">
+                    <li *ngFor=" let subModul of module.subModuls" aria-expanded="false" class="link1 sidebar-item">
+                        <a class="sidebar-link" [routerLink]="['/'+module.alias,subModul.alias]">{{ subModul.name }}</a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+
+
+        </ul>
+
+        <div class="sidebar-bottom d-none d-lg-block">
+            <div class="media">
+<!--                 <img class="rounded-circle mr-3" src="{{ user[0]['data'].profilePic }}" alt="Chris Wood" width="40" height="40">
+ -->                <div class="media-body">
+                    <h5 class="mb-1 text-white">{{ user[0]['data'].name }} {{ user[0]['data'].lname }}</h5>
+                    <div class="text-light">
+                        <i class="fas fa-circle text-success"></i> En Linea
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>

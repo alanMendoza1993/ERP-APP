@@ -1,0 +1,136 @@
+<form [(formGroup)]="forma" (submit)="guardar()" class="needs-validation" ngNativeValidate>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="rasonSocial">Rason Social</label>
+            <input formControlName="rasonSocial" type="text" name="rasonSocial" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="rfc">RFC</label>
+            <input formControlName="rfc" type="text" class="form-control" name="rfc" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="representanteLegal">Representante Legal</label>
+            <input formControlName="representanteLegal" type="text" class="form-control" name="representanteLegal" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="contacto">Contacto</label>
+            <input formControlName="contacto" type="text" class="form-control" name="contacto" required>
+            <div class="invalid-feedback">
+                Please provide a valid state.
+            </div>
+        </div>
+        <div class="col-md-5 mb-3">
+            <label for="direccion">Direccion</label>
+            <input formControlName="direccion" type="text" class="form-control" name="direccion" required>
+            <div class="invalid-feedback">
+                Please provide a valid state.
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="telefono">Telefono</label>
+            <input formControlName="telefono" type="text" class="form-control" name="telefono" required maxlength="14">
+            <div class="invalid-feedback">
+                Please provide a valid zip.
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-5 mb-3">
+            <label for="correo">Correo Electronico</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                </div>
+                <input type="email" formControlName="correo" class="form-control" name="correo" aria-describedby="inputGroupPrepend" required>
+                <div class="invalid-feedback">
+                    Please choose a username.
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3 form-group">
+            <label for="tipoAdquisicion">Tipo de Adquisicion</label>
+            <select formControlName="tipoAdquisicion" class="custom-select" name="tipoAdquisicion" required>
+      <option value="1">Producto</option>
+      <option value="2">Servicio</option>
+    </select>
+            <div class="invalid-feedback">Example invalid custom select feedback</div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="diasCredito">Dias de Credito</label>
+            <input formControlName="diasCredito" type="number" class="form-control" name="diasCredito" required>
+            <div class="invalid-feedback">
+                Please provide a valid zip.
+            </div>
+        </div>
+    </div>
+    <h3 *ngIf="forma.value.tipoAdquisicion == 1">Productos</h3>
+    <table class=" table table-striped" *ngIf="forma.value.tipoAdquisicion == 1">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Capacidad</th>
+
+            </tr>
+        </thead>
+
+        <tbody *ngIf="productos">
+            <tr *ngFor="let producto of productos, let i of index">
+                <td class="">
+
+                    {{producto.nombre}}
+
+                </td>
+                <td class="">
+
+                    {{producto.descripcion}}
+
+                </td>
+                <td class="">
+                    {{producto.capacidad}}
+                </td>
+                <td><span (click)="agregarProducto()" class="btn btn-warning"><img class="ico" src="../../../../assets/img/editar.png"/> Editar</span></td>
+            </tr>
+
+        </tbody>
+
+        <tbody>
+            <tr>
+                <td class="">
+
+                    <input formControlName="nombre" type="text" class="form-control" name="nombre" required>
+
+                </td>
+                <td class="">
+
+                    <input formControlName="descripcion" type="text" class="form-control" name="descripcion" required>
+
+                </td>
+                <td class="">
+
+                    <input formControlName="capacidad" type="text" class="form-control" name="capacidad" required>
+
+                </td>
+                <td><span (click)="guardarProducto()" class="btn btn-success"><img class="ico" src="../../../../assets/img/guardar.png"/> Agregar</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Send message</button>
+    </div>
+</form>

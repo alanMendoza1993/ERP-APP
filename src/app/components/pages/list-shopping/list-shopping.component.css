@@ -1,0 +1,13 @@
+#fixed{
+    top: auto;
+    margin: auto;
+    left: 60%;
+    right: auto;
+    bottom: auto; 
+}
+
+.maxim {
+    height: 100%;
+    overflow: scroll;
+    
+}

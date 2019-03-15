@@ -1,0 +1,95 @@
+<div class="content maxim" [style.height]=" w + 'px'">
+    <h3>Homologaciòn</h3>
+    <hr>
+    <nav aria-label="breadcrumb bg-light">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Configuracion</li>
+            <li class="breadcrumb-item active" aria-current="page">Catalogos</li>
+            <li class="breadcrumb-item active" aria-current="page">Productos registrados</li>
+        </ol>
+    </nav>
+    <div class="card">
+        <div class="card-header">
+            <div class="col-lg-12">
+                <div class="col-lg-5">
+                    <h5 class="card-title">Productos registrados</h5>
+                    <h6 class="card-subtitle text-muted">Productos registrados sin homologacion</h6>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <hr>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="">Proveedor</label>
+                        <select class="form-control" name="providerOption" id="" [(ngModel)]="providerOption" (change)="loadProduct();">
+                        <option value=""></option>
+                        <option value="1">Con Proveedor</option>
+                        <option value="0">Sin Proveedores</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for=""></label>
+                        <div class="input-group mb-2" id="input-search">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><span class="fa fa-search"></span></div>
+                            </div>
+                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="" name="searchName" [(ngModel)]="searchName" (keyup)="search();">
+                        </div>
+                    </div>
+                    <!-- <div class="form-group col-md-2" *ngIf="loadArticle != ''">
+                      <label for="">Articulos</label>
+                      <select class="form-control" name="article" id="" [(ngModel)]="article" (change)="loadMaterial();">
+                        <option *ngFor="let art of loadArticle" value="{{art._id}}">{{art.title}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group col-md-2">
+                      <label for="">Categoria</label>
+                      <select class="form-control" name="category" id="" [(ngModel)]="category" (change)="loadNewProvider();">
+                        <option *ngFor="let cat of loadCategory" value="{{cat._id}}">{{cat.name}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group col-md-5">
+                      <label for="">Proveedores</label>
+                      <select class="form-control" name="provider" id="" [(ngModel)]="provider">
+                        <option *ngFor="let pro of loadProvider" value="{{pro._id}}">{{(pro.comercialName)?pro.comercialName:pro.NombreComercial}}</option>
+                      </select>
+                  </div> -->
+                </div>
+                <!-- <button class="btn btn-success" (click)="save();"><span class="fa fa-save"></span><br>Guardar</button> -->
+                <br>
+            </form>
+            <div class="col-lg-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>SKU</td>
+                            <td>Articulo</td>
+                            <td>Descripcion</td>
+                            <td>Categoria</td>
+                            <td>Proveedor</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let art2 of loadArticle; let i = index">
+                            <td>{{art2.sku}}</td>
+                            <td>{{art2.title}}</td>
+                            <td>{{art2.description}}</td>
+                            <td>
+                                <select class="form-control" name="category" id="" [(ngModel)]="art2.category" (change)="save(art2)">
+                                <option *ngFor="let cat of loadCategory" value="{{cat._id}}">{{cat.name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="provider" id="" [(ngModel)]="art2.providerId" (change)="save(art2)">
+                                <option *ngFor="let pro of loadProvider" value="{{pro._id}}">{{(pro.comercialName)?pro.comercialName:pro.NombreComercial}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

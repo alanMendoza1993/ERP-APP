@@ -1,0 +1,164 @@
+<div class="content maxim" [style.height]=" w + 'px'"  >
+    <h3>Configuracion</h3>
+    <hr> 
+    <nav aria-label="breadcrumb bg-light">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Configuracion</li>
+            <li class="breadcrumb-item active" aria-current="page">Catalogos</li>
+            <li class="breadcrumb-item active" aria-current="page">Proveedores</li>
+            <li class="breadcrumb-item active" aria-current="page">Productos</li>
+        </ol>
+    </nav> 
+    <div class="card">
+        <div class="card-header">
+          <div class="col-lg-12">
+            <div class="col-lg-5">
+                <h5 class="card-title">Productos</h5>
+                <h6 class="card-subtitle text-muted">Registro de Productos</h6>
+            </div>
+          </div>  
+        </div>
+        <div class="card-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item col-lg-4">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h4><span class="fa fa-pencil-square-o"></span> Nuevo</h4></a>
+              </li>
+              <li class="nav-item col-lg-4">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><h4><span class="fa fa-folder-open"></span> Productos</h4></a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <br>
+                <form action="">
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                          <label for="">ID</label>
+                          <input type="text" class="form-control" id="inputEmail4" placeholder="ID" name="ID" [(ngModel)]="model.ID">
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label for="">No.Producto</label>
+                          <input type="number" class="form-control" id="" placeholder="" name="noProduct" [(ngModel)]="model.noProduct">
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label for="">Codigo</label>
+                          <input type="number" class="form-control" id="" placeholder="" name="code" [(ngModel)]="model.code">
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="">Nombre</label>
+                          <input type="text" class="form-control" id="" placeholder="" name="title" [(ngModel)]="model.title">
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label for="">SKU</label>
+                          <input type="number" class="form-control" id="" placeholder="" name="sku" [(ngModel)]="model.sku">
+                        </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-2">
+                            <label for="">Tiempo de espera</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="waitTime" [(ngModel)]="model.waitTime">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="">Volumen</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="volume" [(ngModel)]="model.volume">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="">Peso</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="weight" [(ngModel)]="model.weight">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="">Monto</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="rode" [(ngModel)]="model.rode">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="">IVA</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="ivaType" [(ngModel)]="model.ivaType">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="">Moneda</label>
+                            <select class="form-control" name="currency" id="" [(ngModel)]="model.currency">
+                              <option value="MXN">MXN</option>
+                            </select>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-2">
+                            <label for="">Tipo</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="type" [(ngModel)]="model.type">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="">Tipo de venta</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="typeBuy" [(ngModel)]="model.typeBuy">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="">Costo</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="costing" [(ngModel)]="model.costing">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="">IEPS</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="IEPS" [(ngModel)]="model.IEPS">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="">Tipo de IEPS</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="IEPStype" [(ngModel)]="model.IEPStype">
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="">Unidad de medida</label>
+                            <input type="number" class="form-control" id="" placeholder="" name="unitSize" [(ngModel)]="model.unitSize">
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="col-md-2 mb-3 form-group">
+                              <label for="tipoAdquisicion">Material</label>
+                              <select class="custom-select" name="category" [(ngModel)]="model.category">
+                                <option *ngFor="let materials of material" value="{{materials._id}}" >{{materials.name}}</option>
+                              </select>
+                          </div>
+                          <div class="form-group col-md-2">
+                              <label for="">Precio</label>
+                              <input type="number" class="form-control" id="" placeholder="" name="price" [(ngModel)]="model.price">
+                          </div>
+                          <div class="form-group col-md-2">
+                              <label for="">CDFI</label>
+                              <input type="number" class="form-control" id="" placeholder="" name="cdfi" [(ngModel)]="model.cdfi">
+                          </div>
+                          <div class="form-group col-md-2">
+                              <label for="">CDFIU</label>
+                              <input type="number" class="form-control" id="" placeholder="" name="cdfiU" [(ngModel)]="model.cdfiU">
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <label for="">Description</label>
+                            <input type="text" class="form-control" id="" placeholder="" name="description" [(ngModel)]="model.description">
+                          </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary" (click)="save()">Guardar</button>
+
+                </form>
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                  <table class="table table-hover">
+                    <thead>
+                      <th>#</th>
+                      <th>Producto</th>
+                      <th>Codigo</th>
+                      <th>No. Producto</th>
+                      <th></th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of datas; let i = index">
+                        <td>{{i}}</td>
+                        <td>{{(data.title)?data.title:""}}</td>
+                        <td>{{data.code}}</td>
+                        <td>{{data.noProduct}}</td>
+                        <td><button class="btn btn-danger" title="Eliminar" (click)="delete(data._id);"><span class="fa fa-close"></span></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+ 

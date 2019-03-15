@@ -1,0 +1,550 @@
+<div class="content maxim" [style.height]=" w + 'px'">
+    <h3>Proveedores</h3>
+
+    <hr>
+    <nav aria-label="breadcrumb bg-light">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Configuracion</li>
+            <li class="breadcrumb-item active" aria-current="page">Catalogos</li>
+            <li class="breadcrumb-item active" aria-current="page">Proveedores</li>
+        </ol>
+    </nav>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Nuevo Proveedor</h5>
+            <h6 class="card-subtitle text-muted"></h6>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create"><span class="fa fa-plus"></span><br>
+                Nuevo
+            </button>
+            <div class="input-group col-lg-4" id="input-search">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><span class="fa fa-search"></span></div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="" name="searchPro" [(ngModel)]="searchPro" (keyup)="search();">
+            </div>
+        </div>
+
+        <div class="card-body">
+            <br>
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th class="minth">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of proveedores; let i = index;" class="text-center">
+                        <td>{{i+1}}</td>
+                        <!-- <td>{{data.NombreComercial}}</td> -->
+                        <td>{{(data.NombreComercial)?data.NombreComercial:data.comercialName}}</td>
+                        <td>
+                            <button [routerLink]="[ '/providers/profile/']" class="btn btn-success" title="Perfil de Proveedor"><span class="fa fa-user"></span></button>
+                            <button [routerLink]="[ '/config/providers/products/', data._id]" class="btn btn-info" title="Productos"><span class="fa fa-cube"></span></button>
+                            <button class="btn btn-warning" (click)="providerAccount(data)" data-toggle="modal" title="Cuentas" data-target="#modalUsers"><span class="fa fa-users" ></span></button>
+                            <button class="btn btn-danger" title="Eliminar" (click)="deleteProvider(data._id);"><span class="fa fa-close"></span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div id="modalUsers" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Administracion de Cuentas para: {{accountProvider.RazonSocial?accountProvider.RazonSocial: 'Sin Nombre'}}</h5>
+                <button type="button" class="new" aria-label="new">
+                      Agregar Cuenta  <i class="fa fa-plus-circle"></i>
+                 </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-7">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Proveedor</th>
+                                    <th scope="col">Cuentas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-5">
+                        <div *ngIf="view === 0" class="sin">
+                            Selecciona una cuenta para administrarla y ver opciones!
+
+                        </div>
+                        <div *ngIf="view === 1" class="createAccount">
+                            <div class="titulo"> Creando Cuenta! </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" [(ngModel)]="email" class="form-control">
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="provider">Proveedor</label>
+                                <input type="text" name="provider" class="form-control">
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" (click)="save()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="create" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <button id="close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Nuevo Proveedor</h5>
+                    <h6 class="card-subtitle text-muted"></h6>
+                </div>
+                <div class="card-body">
+                    <form [(formGroup)]="forma" (submit)="guardar()" class="needs-validation" ngNativeValidate>
+                        <div class="form-row">
+                            <!--  -->
+                            <div class="col-md-3 mb-3">
+                                <label for="rasonSocial">Nombre</label>
+                                <input formControlName="comercialName" type="text" name="rasonSocial" class="form-control" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="rasonSocial">Razón Social</label>
+                                <input formControlName="bussinesName" type="text" name="rasonSocial" class="form-control" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="rfc">RFC</label>
+                                <input formControlName="RFC" type="text" class="form-control" name="rfc" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="representanteLegal">Representante Legal</label>
+                                <input formControlName="legalRepresentative" type="text" class="form-control" name="legalRepresentative" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-3 mb-3">
+                                <label for="contacto">Contacto</label>
+                                <input formControlName="contact" type="text" class="form-control" name="contact" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid state.
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="telefono">Teléfono</label>
+                                <input formControlName="phone" type="text" class="form-control" name="phone" required maxlength="14">
+                                <div class="invalid-feedback">
+                                    Please provide a valid zip.
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="correo">Correo Electrónico</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                    </div>
+                                    <input type="email" formControlName="email" class="form-control" name="email" aria-describedby="inputGroupPrepend" required>
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div class="form-row">
+                            <div class="col-md-3 mb-3">
+                                <label for="contacto">Calle</label>
+                                <input formControlName="street" type="text" class="form-control" name="contact" required>
+                            </div>
+                            <div class="col-md-1 mb-3">
+                                <label for="telefono">No.Int</label>
+                                <input formControlName="IntExt" type="number" class="form-control" name="phone" required maxlength="14">
+                            </div>
+                            <div class="col-md-1 mb-3">
+                                <label for="direccion">No.ext</label>
+                                <input formControlName="NoExt" type="number" class="form-control" name="adress" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="direccion">Colonia</label>
+                                <input formControlName="colony" type="text" class="form-control" name="adress" required>
+                            </div>
+                            <div class="col-md-1 mb-3">
+                                <label for="direccion">C.P.</label>
+                                <input formControlName="CP" type="number" class="form-control" name="adress" required>
+                            </div>
+                            <div class="col-md-2 mb-3 form-group">
+                                <label for="tipoAdquisicion">Ciudad</label>
+                                <select formControlName="location" class="custom-select" name="acquisition" required>
+                                        <option value="1">Monterrey</option>
+                                        <option value="2">San Nicolas</option>
+                                        <option value="2">Guadalupe</option>
+                                    </select>
+                            </div>
+                            <div class="col-md-2 mb-3 form-group">
+                                <label for="tipoAdquisicion">Estado</label>
+                                <select formControlName="state" class="custom-select" name="acquisition" required>
+                                        <option value="1">Nuevo leon</option>
+                                        <option value="2">Toluca</option>
+                                    </select>
+                            </div>
+                            <div class="col-md-3 mb-3 form-group">
+                                <label for="tipoAdquisicion">Pais</label>
+                                <select formControlName="country" class="custom-select" name="acquisition" required>
+                                        <option value="1">Mexico</option>
+                                        <option value="2">E.U.A</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3 form-group">
+                                <label for="tipoAdquisicion">Sucursal</label>
+                                <select formControlName="branch" class="custom-select" name="acquisition" required>
+                                      <option value="1">Matriz</option>
+                                    </select>
+                            </div>
+                            <div class="col-md-4 mb-3 form-group">
+                                <label for="tipoAdquisicion">Banco</label>
+                                <select formControlName="bank" class="custom-select" name="acquisition" required>
+                                      <option value="1">Bancomer</option>
+                                      <option value="2">Santander</option>
+                                    </select>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="diasCredito">Cuenta Clave</label>
+                                <input formControlName="key_account" type="number" class="form-control" name="credit" required>
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div class="form-row">
+
+                            <!-- <div class="col-md-3 mb-3 form-group">
+                                    <label for="tipoAdquisicion">Tipo de Adquisición</label>
+                                    <select formControlName="acquisition" class="custom-select" name="acquisition" required>
+                                      <option value="1">Producto</option>
+                                      <option value="2">Servicio</option>
+                                      <option value="3">Otro</option>
+                                    </select>
+                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                </div> -->
+                            <div class="col-md-3 mb-3">
+                                <label for="diasCredito">Días de Crédito</label>
+                                <input formControlName="creditDay" type="number" class="form-control" name="credit" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid zip.
+                                </div>
+                            </div>
+                            <!--  -->
+                            <div class="col-md-3 mb-3">
+                                <label for="diasCredito">Monto de credito</label>
+                                <input formControlName="credit" type="number" class="form-control" name="credit" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid zip.
+                                </div>
+                            </div>
+                            <!--  -->
+                        </div>
+                        <br>
+                        <button class="btn btn-lg btn-primary" type="submit" (click)="guardar()"><span class="fa fa-floppy-o"></span><br> Guardar</button>
+                        <br>
+                        <!--  -->
+                    </form>
+                    <!-- ///////////////////    tabla de Productos //////////////////////////////-->
+                    <!-- ///////////////////    tabla de Productos //////////////////////////////-->
+                    <!-- ///////////////////    tabla de Productos //////////////////////////////-->
+                    <h3 *ngIf="forma.value.acquisition == 1 || productos.length != 0">Productos{{productos.lenght}}</h3>
+                    <!-- <form [(formGroup)]="productoForm" class="needs-validation" ngNativeValidate>
+                            <table class=" table table-striped" *ngIf="forma.value.acquisition == 1 || productos.length != 0">
+                                <thead *ngIf="forma.value.acquisition == 1 || productos.length != 0">
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">U. de medida</th>
+                                        <th scope="col">Min. Compra</th>
+                                        <th scope="col">Tipo de material</th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Descripcion</th>
+                                        <th scope="col">Capacidad</th>
+                                        <th scope="col">Tiempo de Entrega</th>
+                                        <th scope="col">Dias de Credito</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                    
+                                <tbody *ngIf="forma.value.acquisition == 1 || productos.length != 0">
+                                    <tr *ngFor="let producto of productos; let i = index">
+                                        <td class="">
+                    
+                                            {{producto.name}}
+                    
+                                        </td>
+                                        <td class="">
+                    
+                                            {{producto.description}}
+                    
+                                        </td>
+                                        <td class="">
+                                            {{producto.capacity}}
+                                        </td>
+                                        <td class="">
+                                                {{producto.time}}
+                                        </td>
+                                        <td class="">
+                                                {{producto.day}}
+                                        </td>
+                                        <td>
+                                            <span (click)="guardarProducto()" class="btn btn-warning"><img class="ico" src="../../../../assets/img/editar.png"/></span>
+                                            <span (click)="borrar(i, 'productos')" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger"><img class="ico" src="../../../../assets/img/eliminar.png"/></span>
+                                        </td>
+                                    </tr>
+                    
+                                </tbody>
+                    
+                    
+                                <tbody *ngIf="forma.value.acquisition == 1">
+                                    <tr>
+                                        <td class="">
+                    
+                                            <input formControlName="name" type="text" class="form-control" name="name" required>
+                    
+                                        </td>
+                                        <td class="">
+                    
+                                            <input formControlName="description" type="text" class="form-control" name="description" required>
+                    
+                                        </td>
+                                        <td class="">
+                    
+                                            <input formControlName="capacity" type="text" class="form-control" name="capacity" required>
+                    
+                                        </td>
+                                        <td class="">
+                    
+                                                <input formControlName="time" type="text" class="form-control" name="time" required>
+                           
+                                        </td>
+                                        <td class="">
+                    
+                                             <input formControlName="day" type="text" class="form-control" name="day" required>
+                        
+                                        </td>
+                                        <td><span (click)="guardarProducto()" class="btn btn-success"><img class="ico" src="../../../../assets/img/guardar.png"/> Agregar</span></td>
+                                    </tr>
+                                </tbody>
+                    
+                            </table>
+                            </form> -->
+
+
+                    <!-- ///////////////////    tabla de Servicios //////////////////////////////-->
+                    <!-- ///////////////////    tabla de Servicios //////////////////////////////-->
+                    <!-- ///////////////////    tabla de Servicios //////////////////////////////-->
+                    <h3 *ngIf="forma.value.acquisition == 2 || servicios.length != 0">Servicios</h3>
+                    <!--  <form [(formGroup)]="servicioForm" class="needs-validation" ngNativeValidate>
+                            <table class=" table table-striped" *ngIf="forma.value.acquisition == 2 || servicios.length != 0">
+                                <thead *ngIf="forma.value.acquisition == 2 || servicios.length != 0">
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Descripcion</th>
+                                        <th scope="col">Capacidad</th>
+                                        <th scope="col">Tiempo de Entrega</th>
+                                        <th scope="col">Dias de Credito</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                    
+                                <tr *ngFor="let servicio of servicios; let i = index">
+                                    <td class="">
+                    
+                                        {{servicio.name}}
+                    
+                                    </td>
+                                    <td class="">
+                    
+                                        {{servicio.description}}
+                    
+                                    </td>
+                                    <td class="">
+                                        {{servicio.capacity}}
+                                    </td>
+                                    <td class="">
+                                            {{servicio.time}}
+                                    </td>
+                                    <td class="">
+                                            {{servicio.day}}
+                                    </td>
+                                    <td>
+                                        <span (click)="guardarServicio()" class="btn btn-warning"><img class="ico" src="../../../../assets/img/editar.png"/></span>
+                                        <span (click)="borrar(i,'servicio')" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger"><img class="ico" src="../../../../assets/img/eliminar.png"/></span>
+                                    </td>
+                                </tr>
+                    
+                                </tbody>
+                                <tbody *ngIf="forma.value.acquisition == 2">
+                                    <tr>
+                                        <td class="">
+                    
+                                            <input formControlName="name" type="text" class="form-control" name="nombre" required>
+                    
+                                        </td>
+                                        <td class="">
+                    
+                                            <input formControlName="description" type="text" class="form-control" name="descripcion" required>
+                    
+                                        </td>
+                                        <td class="">
+                    
+                                            <input formControlName="capacity" type="text" class="form-control" name="capacidad" required>
+                    
+                                        </td>
+                                        <td class="">
+                    
+                                                <input formControlName="time" type="text" class="form-control" name="tiempo" required>
+                           
+                                        </td>
+                                        <td class="">
+                    
+                                             <input formControlName="day" type="text" class="form-control" name="dias" required>
+                        
+                                        </td>
+                                        
+                                        <td><span (click)="guardarServicio()" class="btn btn-success"><img class="ico" src="../../../../assets/img/guardar.png"/> Agregar</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form> -->
+                    <h3 *ngIf="forma.value.acquisition == 3 || otro.length != 0">Otros</h3>
+                    <!-- <form [(formGroup)]="otroForm" class="needs-validation" ngNativeValidate>
+                            <table class=" table table-striped" *ngIf="forma.value.acquisition == 3 || otro.length != 0">
+                                <thead *ngIf="forma.value.acquisition == 3 || servicios.length != 0">
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Descripcion</th>
+                                        <th scope="col">Capacidad</th>
+                                        <th scope="col">Tiempo de Entrega</th>
+                                        <th scope="col">Dias de Credito</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                    
+                                <tr *ngFor="let otro of otro; let i = index">
+                                    <td class="">
+                    
+                                        {{otro.name}}
+                    
+                                    </td>
+                                    <td class="">
+                    
+                                        {{otro.description}}
+                    
+                                    </td>
+                                    <td class="">
+                                        {{otro.capacity}}
+                                    </td>
+                                    <td class="">
+                                            {{otro.time}}
+                                    </td>
+                                    <td class="">
+                                            {{otro.day}}
+                                    </td>
+                                    <td>
+                                        <span (click)="guardarOtro()" class="btn btn-warning"><img class="ico" src="../../../../assets/img/editar.png"/></span>
+                                        <span (click)="borrar(i,'otro')" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-danger"><img class="ico" src="../../../../assets/img/eliminar.png"/></span>
+                                    </td>
+                                </tr>
+                    
+                                </tbody>
+                                <tbody *ngIf="forma.value.acquisition == 3">
+                                    <tr>
+                                        <td class="">
+                    
+                                            <input formControlName="name" type="text" class="form-control" name="nombre" required>
+                    
+                                        </td>
+                                        <td class="">
+                    
+                                            <input formControlName="description" type="text" class="form-control" name="descripcion" required>
+                    
+                                        </td>
+                                        <td class="">
+                    
+                                            <input formControlName="capacity" type="text" class="form-control" name="capacidad" required>
+                    
+                                        </td>
+                                        <td class="">
+                    
+                                                <input formControlName="time" type="text" class="form-control" name="tiempo" required>
+                           
+                                        </td>
+                                        <td class="">
+                    
+                                             <input formControlName="day" type="text" class="form-control" name="dias" required>
+                        
+                                        </td>
+                                        
+                                        <td><span (click)="guardarOtro()" class="btn btn-success"><img class="ico" src="../../../../assets/img/guardar.png"/> Agregar</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </form>
+                             -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    });
+</script>

@@ -1,0 +1,112 @@
+<div class="content maxim" [style.height]=" w + 'px'"  >
+    <h3>Pedidos</h3>
+    <hr>
+    <!-- <nav aria-label="breadcrumb bg-light">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Tesoreria</li>
+            <li class="breadcrumb-item active" aria-current="page">Nueva orden de pedido</li>
+        </ol>
+    </nav> -->  
+    <div id="accordion" *ngFor="let orders of orderProduction">
+        <div class="card" >
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" (click)="loadId(orders._id);">
+                {{"#"+orders.noPetition+"  "+orders.article}}
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <div class="card">
+                    <div class="card-header">
+                      <div class="col-lg-12">
+                        <div class="col-lg-5">
+                            <h5 class="card-title">Orden de pedidos</h5>
+                            <h6 class="card-subtitle text-muted">Nueva Orden de pedidos</h6>
+                        </div>
+                      </div>  
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="inputEmail4">Nombre</label>
+                                <input type="text" class="form-control" id="inputEmail4" placeholder="Nombre de empleado" name="producedBy" [(ngModel)]="model.producedBy">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="inputPassword4">Cometarios</label>
+                                <input type="text" class="form-control" id="inputPassword4" name="comments" [(ngModel)]="model.comments">
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-2">
+                                <label for="inputCity">Folio Fiscal</label>
+                                <input type="text" class="form-control" id="inputCity" name="folioFiscal" [(ngModel)]="model.folioFiscal">
+                              </div>
+                              <div class="form-group col-md-2">
+                                <label for="inputState">CC</label>
+                                <input type="text" class="form-control" id="inputCity" name="CC" [(ngModel)]="model.CC">
+                              </div>
+                              <div class="col-md-2 mb-3 form-group">
+                                  <label for="tipoAdquisicion">Sucursal</label>
+                                  <select class="custom-select" name="acquisition" name="branch" [(ngModel)]="model.branch">
+                                    <option value="1">Matriz</option>
+                                  </select>
+                              </div>
+                              <div class="col-md-2 mb-3 form-group">
+                                  <label for="tipoAdquisicion">Banco</label>
+                                  <select class="custom-select" name="acquisition" name="bank" [(ngModel)]="model.bank">
+                                    <option value="1">Bancomer</option>
+                                    <option value="2">Santander</option>
+                                  </select>
+                              </div>
+                            </div>
+                            <h3>Productos</h3>
+                            <hr>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3 form-group">
+                                    <label for="tipoAdquisicion">Material</label>
+                                    <select class="custom-select" name="acquisition" [(ngModel)]="category" (change)=" loadProducts()">
+                                      <option *ngFor="let materials of material" value="{{materials._id}}" >{{materials.name}}</option>
+                                    </select>
+                                </div>
+                               
+                                <div class="form-group col-md-2" *ngIf="category != ''">
+                                  <label for="inputEmail4">Cantidad</label>
+                                  <input type="number" class="form-control" id="inputEmail4" placeholder="Cantidad" name="quantity" [(ngModel)]="quantity">
+                                </div>
+                                <div class="form-group col-md-4" *ngIf="category != ''">
+                                  <button (click)="addProduct()" class="btnAdd btn btn-success"><span class="fa fa-plus"></span> Agregar</button>
+                                </div>
+                                <div class="form-group col-md-2" *ngIf="category != ''">
+                                    <input type="hidden" class="form-control" id="inputEmail4" placeholder="Cantidad" name="categoryName" [(ngModel)]="categoryName">
+                                </div>
+                            </div>
+                            <hr>
+                            <table class="col-lg-12 table table-responsive" *ngIf="productsOrder != ''">
+                              <thead>
+                                <th>#</th>
+                                <th>Material</th>
+                                <th>cantidad</th>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let mat of productsOrder; let i = index">
+                                  <td>{{i+1}}</td>
+                                  <td>{{mat.name}}</td>
+                                  <td>{{mat.quantity}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+            
+                            <button type="submit" class="btn btn-primary" (click)="save()"><span class="fa fa-floppy-o"></span><br> Guardar</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+  </div>

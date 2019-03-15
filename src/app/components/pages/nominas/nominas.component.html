@@ -1,0 +1,494 @@
+<div class="content maxim" [style.height]=" w + 'px'" *ngIf="pageReady">
+    <div class="clearfix">
+        <form class="form-inline float-right mt--1 d-none d-md-flex">
+            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="align-middle" data-feather="plus"></i>Agregar</button>
+        </form>
+        <h1 class="h3 mb-3">Empleados</h1>
+    </div>
+    <form class="card">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#Nómina</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Puesto</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Habilitado</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuarios">
+            <th scope="row">{{usuario.nomina}}</th>
+            <td>{{usuario.nombre}}</td>
+            <td>{{usuario.departamento}}</td>
+            <td>{{usuario.puesto}}</td>
+            <td style="color: green">En Linea</td>
+            <td style="color: green">Habilitado</td>
+          </tr>
+          <tr>
+              <th scope="row">12220</th>
+              <td>Javier Cortina</td>
+              <td>Sistemas</td>
+              <td>Ingeniero de Soporte</td>
+              <td style="color: red">Fuera de Linea</td>
+              <td style="color: green">Habilitado</td>
+            </tr>
+        
+        </tbody>
+      </table>
+    </form>  
+    
+    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" [ngStyle]="{'display':display}" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+              
+                  <div class="card-header">
+                      <h5 class="card-title">Nuevo Usuario</h5>
+                      
+                  </div>
+                <form>
+                    <input class="hidde" type="hidden" name="_id" #_id="ngModel" [(ngModel)]="model._id">
+              
+              <div class="card-body " >
+                <div class="row">
+                  <div class="input-group mb-3 col">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1">Num. Nómina</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="#" name="noNomina" #noNomina="ngModel" [(ngModel)]="model.noNomina">
+                    </div>
+                    
+                    <div class="input-group mb-3 col">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="datePO" >Tipo de Perfil</span>
+                        </div>
+                        <select class="form-control" name="perfilType" #perfilType="ngModel" [(ngModel)]="model.perfilType">
+                          <option value="1">Administrador</option>
+                          <option value="2">Empleado</option>
+                        </select>
+                      </div>
+                      <div class="input-group- mb-3 col-3">
+        
+                              <label class="switch">
+                                  <input type="checkbox" name="status" #status="ngModel" [(ngModel)]="model.status">
+                                  <span class="slider round"></span>
+                                </label>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="datePO">Habilitado</span>
+                                </div>
+                              
+                        </div>
+ 
+                </div>
+                  
+                <div class="row">
+                  
+                              
+        
+        
+                </div>
+                <div class="form-group seccion">
+                  <h3>Datos Generales</h3>
+                  <hr>
+                  <div class="row">
+                   
+                      <div class="input-group mb-3 col"> 
+                          <div class="input-group-prepend">
+                              <span class="input-group-text" id="datePO">Nombre</span>
+                          </div>
+                          <input type="text" placeholder="Nombre(s)" class="form-control" name="name" #name="ngModel" [(ngModel)]="model.name">
+                        </div>
+                        <div class="input-group mb-3 col">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupSelect01">Apellidos</span>
+                          </div>
+                          <input type="text" placeholder="Pat y Mat" class="form-control" name="lastName" #lastName="ngModel" [(ngModel)]="model.lastName">
+                        </div>
+                        
+                  
+                  </div>
+                  <div class="row">
+                      <div class="input-group mb-3 col">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1">Pais</span>
+                          </div>
+                          <select class="form-control" name="country" #country="ngModel" [(ngModel)]="model.country">
+                            <option value="0">Mexico</option>
+                            <option value="1">Estados Unidos</option>
+                            <option value="2">Japon</option>
+                            <option value="3">China</option>
+                            <option value="4">El Salvador</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3 col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Estado</span>
+                            </div>
+                            <select class="form-control" name="state" #state="ngModel" [(ngModel)]="model.state">
+                              <option value="0">Nuevo Leon</option>
+                              <option value="1">Tamaulipas</option>
+                              <option value="2">Coahuila</option>
+                              <option value="3">Chihuahua</option>
+                              <option value="4">Durango</option>
+                              </select>
+                          </div>
+                    
+                    <div class="input-group mb-3 col">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Ciudad</span>
+                        </div>
+                        <select class="form-control" name="birth_city" #birth_city="ngModel" [(ngModel)]="model.birth_city">
+                          <option value="0">Monterrey</option>
+                          <option value="1">Apodaca</option>
+                          <option value="2">San Nicolas</option>
+                          <option value="3">Guadalupe</option>
+                          <option value="4">San Pedro</option>
+                          </select>
+                      </div>
+                      
+                   
+                        
+                  
+                  </div>
+                  <div class="row">
+                        <div class="input-group mb-3 col">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Fecha de Nac.</span>
+                                </div>
+                                <input type="text" class="form-control" bsDatepicker name="birth" #birth="ngModel" [(ngModel)]="model.birth">
+                              </div>
+                      <div class="input-group mb-3 col">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1">Sexo</span>
+                          </div>
+                          <select class="form-control" name="sex" #sex="ngModel" [(ngModel)]="model.sex">
+                            <option value="0">Hombre</option>
+                            <option value="1">Mujer</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3 col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Estado Civil</span>
+                            </div>
+                            <select class="form-control" name="civil" #civil="ngModel" [(ngModel)]="model.civil">
+                              <option value="0">Soltero</option>
+                              <option value="1">Casado</option>
+                              <option value="2">Union Libre</option>
+                            </select>
+                          </div>                        
+                  
+                  </div>
+                  <div class="row">
+                        <div class="input-group mb-3 col">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Peso</span>
+                                </div>
+                                <input type="text" class="form-control" name="weight" #weight="ngModel" [(ngModel)]="model.weight">
+                              </div>
+                              <div class="input-group mb-3 col">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text" id="basic-addon1">Altura</span>
+                                  </div>
+                                  <input type="text" class="form-control" name="height" #height="ngModel" [(ngModel)]="model.height">
+                                </div>
+                      <div class="input-group mb-3 col">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1">CURP</span>
+                          </div>
+                          <input type="text" class="form-control" name="curp" #curp="ngModel" [(ngModel)]="model.curp">
+                        </div>
+                        
+                  </div>
+                  <div class="row">
+                        <div class="input-group mb-3 col">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="datePO">RFC</span>
+                                </div>
+                                <input type="text" class="form-control" name="rfc" #rfc="ngModel" [(ngModel)]="model.rfc">
+                              </div>
+                              <div class="input-group mb-3 col">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text" id="datePO">NSS</span>
+                                  </div>
+                                  <input type="text" class="form-control" name="rfc" #rfc="ngModel" [(ngModel)]="model.nss">
+                                </div>
+                                <div class="input-group mb-3 col">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="datePO">UMF</span>
+                                  </div>
+                                  <input type="text" class="form-control"  name="umf" #umf="ngModel" [(ngModel)]="model.umf">
+                                </div>
+                  </div>
+                </div>
+                <div class="form-group seccion">
+                    <h3>Datos Contacto</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="input-group mb-3 col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Correo</span>
+                            </div>
+                            <input type="email" class="form-control"  name="email" #email="ngModel" [(ngModel)]="model.email">
+                          </div>
+                        
+                        <div class="input-group mb-3 col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Telefono</span>
+                            </div>
+                            <input type="number" class="form-control"  name="phone" #phone="ngModel" [(ngModel)]="model.phone">
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                            <div class="input-group mb-3 col">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Celular</span>
+                                    </div>
+                                    <input type="number" class="form-control" name="cellphone" #cellphone="ngModel" [(ngModel)]="model.cellphone">
+                                </div>
+                
+                                <div class="input-group mb-3 col">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Ciudad</span>
+                                    </div>
+                                    <select class="form-control" name="life_city" #life_city="ngModel" [(ngModel)]="model.life_city">
+                                      <option value="0">Monterrey</option>
+                                      <option value="1">Apodaca</option>
+                                      <option value="2">San Nicolas</option>
+                                      <option value="3">Guadalupe</option>
+                                      <option value="4">San Pedro</option>
+                                      </select>
+                                  </div>
+                        <div class="input-group mb-3 col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Calle</span>
+                            </div>
+                            <input type="text" class="form-control" name="street" #street="ngModel" [(ngModel)]="model.street">
+                          </div>
+        
+                        
+                    </div>
+                    <div class="row">
+                            <div class="input-group mb-3 col-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Numero Ext</span>
+                                    </div>
+                                    <input type="number" class="form-control" name="noExt" #noExt="ngModel" [(ngModel)]="model.noExt">
+                                </div>
+                                <div class="input-group mb-3 col-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Numero Int</span>
+                                    </div>
+                                    <input type="number" class="form-control" name="noInt" #noInt="ngModel" [(ngModel)]="model.noInt">
+                                </div>
+                                <div class="input-group mb-3 col-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Colonia</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="colony" #colony="ngModel" [(ngModel)]="model.colony">
+                                </div>
+                    </div>
+                   
+                </div>
+                <div class="form-group seccion">
+                    <h3>Datos Internos</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="input-group mb-3 col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Fecha Ingreso</span>
+                            </div>
+                            <input type="text" class="form-control" bsDatepicker name="dateEntry" #dateEntry="ngModel" [(ngModel)]="model.dateEntry">
+                          </div>
+                          <div class="input-group mb-3 col">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="datePO">Tipo Contrato</span>
+                          </div>
+                          <select class="form-control" name="typeContract" #typeContract="ngModel" [(ngModel)]="model.typeContract">
+                              <option value="1">Indefinido</option>
+                              <option value="2">Temporal</option>
+                              <option value="3">Servicio</option>
+                              <option value="4">Practicas</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3 col">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="datePO" >Departamento</span>
+                            </div>
+                            <select class="form-control" #departament="ngModel" name="departament" [(ngModel)]="model.departament"> 
+                                <option value="1">Ingeniería</option>
+                                <option value="2">Producción</option>
+                                <option value="3">Administración</option>
+                                <option value="4">Recursos Humanos</option>
+                                <option value="5">Contaduria</option>
+                              </select>
+                          </div>
+                             
+                    </div>
+                    <div class="row">
+                            <div class="input-group mb-3 col">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="datePO">Puesto</span>
+                                      </div>
+                                      <select class="form-control" name="job" #job="ngModel" [(ngModel)]="model.job">
+                                          <option value="1">Lider de Produccion</option>
+                                          <option value="2">Gerente de ventas</option>
+                                          <option value="3">Gerente de Almacen</option>
+                                          <option value="4">Director de Recursos Humanos</option>
+                                          <option value="5">Contador</option>
+                                        </select>
+                                    </div>
+                        <div class="input-group mb-3 col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Sucursal</span>
+                            </div>
+                            <select class="form-control" name="branch" #branch="ngModel" [(ngModel)]="model.branch">
+                                <option value="1">Matriz</option>
+                                <option value="2">Sucursal 2</option>
+                               
+                              </select>
+                          </div>
+                          <div class="input-group mb-3 col">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="datePO">Registro Patronal</span>
+                            </div>
+                            <input type="text" class="form-control" name="rp" #rp="ngModel" [(ngModel)]="model.rp">
+                          
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                            <div class="input-group mb-3 col">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="datePO">Banco</span>
+                                    </div>
+                                    <select class="form-control" name="banck" #banck="ngModel" [(ngModel)]="model.bank">
+                                        <option value="1">Banamex</option>
+                                        <option value="2">Bancomer</option>
+                                        <option value="3">Santander</option>
+                                        <option value="4">Afirme</option>
+                                        <option value="5">Banorte</option>
+                                      </select>
+                                  </div>
+                                  <div class="input-group mb-3 col">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text" id="datePO">Regimen</span>
+                                    </div>
+                                    <select class="form-control" name="regime" #regime="ngModel" [(ngModel)]="model.regime">
+                                        <option value="1">Quincenal</option>
+                                        <option value="2">Mensual</option>
+                                        <option value="3">Semanal</option>
+                                      </select>
+                                  </div>
+                        <div class="input-group mb-3 col">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Salario Diario</span>
+                            </div>
+                            <input type="number" class="form-control" name="day_salari" #day_salari="ngModel" [(ngModel)]="model.day_salari">
+                          </div>
+                         
+                    </div>
+                    <div class="row">
+                            <div class="input-group mb-3 col">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"  alt="salario DIario Integrado" id="basic-addon1">SD Integrado</span>
+                                    </div>
+                                    <input type="number" alt="salario DIario Integrado" class="form-control" name="sdInt" #sdInt="ngModel" [(ngModel)]="model.sdInt">
+                              </div>
+                              <div class="input-group mb-3 col">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text" id="datePO">Periodicidad</span>
+                                  </div>
+                                  <select class="form-control" name="period" #period="ngModel" [(ngModel)]="model.period">
+                                      <option value="1">Quincenal</option>
+                                      <option value="2">Mensual</option>
+                                      <option value="3">Semanal</option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3 col-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="datePO">T. Salario</span>
+                                  </div>
+                                  <select class="form-control" #payment_type="ngModel" name="payment_type" [(ngModel)]="model.payment_type">
+                                      <option value="1">Obra</option>
+                                      <option value="2">Mixto</option>
+                                      <option value="3">Nominal</option>
+                                    </select>
+                                </div>
+                    </div>
+                    <div class="row">
+                        
+                            <div class="input-group mb-3 col">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Tipo de Jornada</span>
+                                    </div>
+                                    <select class="form-control" name="journe_type" #journe_type="ngModel" [(ngModel)]="model.journe_type">
+                                        <option value="1">Diaria</option>
+                                        <option value="2">Nocturno</option>
+                                        <option value="3">Semanal</option>
+                                      </select>
+                                  </div>
+                                  <div class="input-group mb-3 col">
+                                      <div class="input-group-prepend">
+                                          <span class="input-group-text" id="basic-addon1">Metodo de Pago</span>
+                                      </div>
+                                      <select class="form-control" name="payment" #payment="ngModel" [(ngModel)]="model.payment">
+                                          <option value="1">Efectivo</option>
+                                          <option value="2">Transferencia Electronica</option>
+                                          <option value="3">Tarjeta de Debito</option>
+                                        </select>
+                                </div>
+                                <div class="input-group mb-3 col">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="datePO">Numero de Cuenta</span>
+                                    </div>
+                                    <input type="number" class="form-control" name="number_account" #number_account="ngModel" [(ngModel)]="model.number_account">
+                                  </div>
+                    </div>
+                    <div class="row"> 
+                            <div class="input-group mb-3 col">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="datePO">Email</span>
+                                      </div>
+                                      <input type="email" class="form-control" name="email" [(ngModel)]="model.email">
+                                    </div>
+                            <div class="input-group mb-3 col">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Sindicalizado</span>
+                                </div>
+                                <input type="checkbox" class="form-control" name="labor_union" #union="ngModel" [(ngModel)]="model.labor_union">
+                                <!-- <select class="form-control" name="union" #union="ngModel" [(ngModel)]="model.union">
+                                    <option value="1">Si</option>
+                                    <option value="2">No</option>
+                                  </select> -->
+                          </div>
+                          <div class="input-group mb-3 col">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="datePO" >RFC Patron Origen</span>
+                              </div>
+                              <input type="text" class="form-control" name="rfc_employer" #rfc_employer="ngModel" [(ngModel)]="model.rfc_employer">
+                            </div>
+                    </div>
+                </div>
+              
+              
+              
+          </div> 
+         
+       
+               
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-success" (click)="save();">Guardar Usuario</button>
+            </div>
+        </form>
+
+          </div>
+            </div>
+    </div>
+
+    
+</div>

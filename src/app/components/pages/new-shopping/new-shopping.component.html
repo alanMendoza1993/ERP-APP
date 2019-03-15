@@ -1,0 +1,319 @@
+<div class="content maxim" [style.height]=" w + 'px'">
+    <form #f="ngForm">
+
+
+        <div class="row">
+
+            <div class="col-10">
+                <h2>Listado de Materiales Pendientes</h2>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="inputEmail4">Inicio</label>
+                <input type="date" class="form-control" id="inputEmail4" placeholder="Email" name="dateInit" [(ngModel)]="dateInit" (change)="loadDates();">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputPassword4">Final</label>
+                <input type="date" class="form-control" id="inputPassword4" placeholder="Password" name="dateEnd" [(ngModel)]="dateEnd" (change)="loadDates();">
+            </div>
+            <!-- <div class="form-group col-md-2">
+                <label for="inputPassword4">Folio</label>
+                <input type="text" class="form-control" id="inputPassword4" placeholder="" name="folioLoad" [(ngModel)]="folioLoad" (keyup)="loadByFolio();">
+            </div> -->
+        </div>
+        <!-- Client -->
+        <div id="proyectos">
+            <div class="col">
+                <div *ngFor="let orders of orderProduction; let i = index" class="card w-100 ">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card proyectos">
+                            <div class="card-header" [ngClass]="{ 'semYellow':  nuevaFecha > orders.orderProductionId.dateFinish && !(redFecha > orders.orderProductionId.dateFinish)}" id="headingOne">
+                                <div class="bHeader" [ngClass]="{ 'semRed':  redFecha > orders.orderProductionId.dateFinish }">
+                                    <h3 class="mb-0">
+                                        {{orders.orderProductionId.nameProyect? orders.orderProductionId.nameProyect: 'sin nombre'}} <span class="dateSale">{{orders.orderProductionId.dateFinish | date: 'dd/MM/yyyy'}}</span>
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapseOne'+i" aria-expanded="true" aria-controls="collapseOne">
+                                        Mostrar +
+                                    </button>
+                                        <!-- <button class="btn btn-danger" title="Eliminar" (click)="delete(orders.orderProductionId._id);"><span class="fa fa-close"></span></button> -->
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div id="{{'collapseOne'+ i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body row">
+                                    <div class="col titleC">Material</div>
+                                    <div class="col titleC">Cantidad Necesaria</div>
+                                    <div class="col titleC">Pendiente por Asignar</div>
+                                    <div class="col titleC">Asignar</div>
+                                    <div class="col"></div>
+                                </div>
+                                <div class="card-body row" *ngFor="let material of orders.materials; let a = index">
+                                    <div class="col">{{(material.name)?material.name:"-"}}</div>
+                                    <div class="col">{{material.quantity}}</div>
+                                    <div class="col">{{material.quantityPending}}</div>
+                                    <div class="col">
+                                        <input type="number" class="input-lg form-control" name="'p[{{a}}]" [(ngModel)]="material.enviar" (keyup)="validMax(material.quantityPending,i,a)">
+                                    </div>
+                                    <div class="col-1 btn-link agregarP" (click)="loadIdCategory(material.id,material.name,material.enviar,i,a,f,orders)">A Cuenta</div>
+                                    <div class="col-1 btn-link quitarP" (click)="quitarCuenta(material.id,material.quantity,material.quantityPending,i,a)">Quitar Cuenta</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div id="detallesP">
+                    <h3>Cuenta</h3>
+                    <hr>
+                    <div class="row tabla">
+                        <div class="col ">
+                            <strong>Material</strong>
+                        </div>
+                        <div class="col-2 ">
+                            <strong>Cantidad</strong>
+                        </div>
+                        <div class="col-2">
+                            <strong>Pendiente</strong>
+                        </div>
+                        <div class="col-3">
+                        </div>
+
+                    </div>
+                    <div class="row tabla" *ngFor="let mat of cuenta; let i = index">
+                        <div class="col">
+                            {{mat.name? mat.name: 'sin nombre'}}
+                        </div>
+                        <div class="col-2">
+                            {{mat.quantity}}
+                        </div>
+                        <div class="col-2">
+                            {{mat.pending}}
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-sm btn-success" data-toggle="modal" (click)="datos(mat,i)" data-target="#exampleModalCenter">+</button>
+                        </div>
+                    </div>
+                    <div id="pieD">
+                        <hr>
+                        <button *ngIf="!cuenta.length" class="btn btn-block btn-primary" disabled>Esperando Materiales</button>
+                        <button *ngIf="cuenta.length " [disabled]="providersFull()" (click)="vizualizarOc()" class="btn btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Crear Ordenes de Compra</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Asignar Proveedor A {{cuentaCantidad - cuentaRes}} : {{cuentaMaterial}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="monthly">
+                        <div class="row py-4">
+                            <div *ngFor="let provider of providersCompare; let i = index" class="col-sm-4 mb-3 mb-md-0 refex">
+                                <div class="card text-center h-100">
+                                    <div class="card-body d-flex flex-column">
+                                        <div class="mb-4">
+                                            <h5>{{provider.providerId.NombreComercial?provider.providerId.NombreComercial: 'Sin Nombre'}}</h5>
+                                            <img class="imagenLogo" src="../../../../assets/img/logoDefault.png" alt="">
+                                        </div>
+                                        <h6>Producto:</h6>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2 bg-dark text-light">
+                                                <li class="mb-2 bg-dark text-light">
+                                                    {{provider.title?provider.title: 'Nombre no Registrado'}}
+                                                </li>
+                                                <li class="mb-2">
+                                                    {{provider.price?provider.price: 'Precio No Registrado'}}
+
+                                                </li>
+                                                <li class="mb-2  bg-dark text-light">
+                                                    {{provider.providerId.dateCreate? (provider.providerId.dateCreate | date: 'dd/MM/yyyy'): 'Fecha no Registrada' }}
+
+                                                </li>
+                                                <h6>Ultima Compra:</h6>
+
+                                                <li class="mb-2">
+                                                    {{provider.providerId.email?provider.providerId.email: 'Sin Correo Definido'}}
+                                                </li>
+                                                <li class="mb-2 bg-dark text-light">
+                                                    {{provider.providerId.email?provider.providerId.email: 'Sin Costo disponible'}}
+                                                </li>
+                                        </ul>
+                                        <div class="mt-auto">
+                                            <input type="number" class="form-control" placeholder="Cantidad" [(ngModel)]="provider.many" (keyup)="restCant(provider.many,i)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="saveProviders()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle2">Estas a un paso de generar las siguientes ordenes de compra:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="monthly">
+                        <div class="row py-4">
+                            <div *ngFor="let provider of providerCalc; let i = index" class="col-sm-12 mb-3 mb-md-0" style="margin-bottom: 5px">
+                                <div class="card text-center h-100">
+                                    <div class="card-body d-flex flex-column">
+                                        <div class="mb-4 nameProviderOc">
+                                            <h5 class="cw">{{provider.providerName? provider.providerName: 'Sin nombre de Proveedor'}}</h5>
+                                        </div>
+                                        <li class="mb-2 bg row">
+                                            <div class="col-4 m">
+                                                <label for="cc"> C.C: </label>
+                                                <select name="cc" class="form-control" [(ngModel)]="provider.cc"> 
+                                                    <option value="SIS">Sistemas</option>
+                                                    <option value="ADMIN">Administración</option>
+                                                    <option value="PROD">Producción</option>
+                                                    <option value="CONT">Contaduria</option>
+                                            </select>
+
+                                            </div>
+                                            <div class="col-4 m">
+                                                <label for="fe">Fecha de espera: </label><input name="fe" class="form-control" type="datetime" [(ngModel)]="provider.dateWait" bsDatepicker> </div>
+                                            <div class="col-4 m">
+                                                <label for="fp">Forma de pago: </label>
+                                                <select class="form-control" [(ngModel)]="provider.type">
+                                                    <option value="CONT">Contado</option>
+                                                    <option value="CREDIT">Credito</option>
+                                                    <option value="TERM">Plazo</option>
+                                            </select>
+                                            </div>
+                                        </li>
+                                        <li *ngIf="provider.type === 'TERM'" class="mb-2 bg row">
+                                            <div class="col-4 m">
+                                                <label for="pi">Fecha de inicio: </label><input name="pi" class="form-control" type="datetime" [(ngModel)]="provider.periodInit" bsDatepicker>
+                                            </div>
+                                            <div class="col-4 m">
+                                                <label for="pe">Fecha de termino: </label><input name="pe" class="form-control" type="datetime" [(ngModel)]="provider.periodEnd" bsDatepicker>
+                                            </div>
+                                            <div class="col-4 m">
+                                                <label for="pp">Periodo: </label><select name="pp" class="form-control" [(ngModel)]="provider.period">
+                                                        <option value="MONTH">Mensual</option>
+                                                        <option value="MONTH">Bimestras</option>
+                                                        <option value="QUINC">Quincenal</option>
+                                                        <option value="FECHA">Especificar Día de Pago</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li *ngIf="provider.type === 'TERM' && provider.period === 'FECHA'" class="mb-2 bg row">
+                                            <div class="col-4 m">
+                                                <label for="pi">Primer Pago: </label><input name="pi" class="form-control" type="datetime" [(ngModel)]="provider.periodPay" bsDatepicker>
+                                            </div>
+
+                                        </li>
+                                        <li *ngIf="provider.type === 'CREDIT'" class="mb-2 bg row">
+                                            <div class="col-4 m">
+                                                <label for="pi">Días: </label><input name="pi" class="form-control" type="datetime" [(ngModel)]="provider.creditDays">
+                                            </div>
+                                            <div class="col-4 m">
+                                                <label for="ap">A partir: </label>
+                                                <select name="ap" class="form-control" [(ngModel)]="provider.creditInit">
+                                                            <option value="HOY">Hoy</option>
+                                                            <option value="FACTURA">Recibo Factura</option>
+                                                            <option value="FECHA">Especificar Fecha</option>
+                                                    </select>
+                                            </div>
+                                            <div *ngIf=" provider.creditInit === 'FECHA'" class="col-4 m">
+                                                <label for="ff">Fecha: </label>
+                                                <input name="ff" class="form-control" type="datetime" [(ngModel)]="provider.creeditDate" bsDatepicker>
+                                            </div>
+                                        </li>
+
+
+
+
+                                        <!--                                         <h6>Productos:</h6>
+ -->
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Cantidad</th>
+                                                    <th scope="col">Precio</th>
+                                                    <th scope="col">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let materials of provider.provedorMateriales">
+                                                    <td>{{materials.name?materials.name: 'Sin nombre'}}</td>
+                                                    <td>{{materials.quantity?materials.quantity: 0}}</td>
+                                                    <td><input type="number" [(ngModel)]="materials.price" (blur)="changeTotal(i)"></td>
+                                                    <td>{{(materials.price * materials.quantity) ?materials.price * materials.quantity: 0}}</td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                        <div class="totalesC">
+                                            <div class="col-12 m totales">Sub Total: ${{provider.total?provider.total: 0}}</div>
+                                            <div class="col-12 m totales">IVA: <select class="iva" type="number" (blur)="totalM(provider.total,provider.iva,i)" [(ngModel)]="provider.iva">
+                                                                        <option value="1">1%</option>
+                                                                        <option value="5">5%</option>
+                                                                        <option value="10">10%</option>
+                                                                        <option value="11">11%</option>
+                                                                        <option value="15">15%</option>
+                                                                        <option value="16">16%</option>
+                                                                    
+                                                        </select> </div>
+                                            <div class="col-12 m totales">Total: ${{ provider.totalM}} </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-4 m">Sub Total: ${{totalOc?totalOc: 0}}</div>
+                <div class="col-4 m">Total: ${{totalMv?totalMv: 0}}</div>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="saveOc()" data-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

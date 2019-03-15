@@ -1,0 +1,56 @@
+<div class="content">
+    <div class="clearfix">
+        <form class="form-inline mt--1 float-rigth d-none d-md-flex">
+            <h1 class="h3 mb-3 col">Historial de Acciones</h1>
+          <div class="col-md-2 mb-3">
+            <input type="text" placeholder="Fecha" class="form-control" bsDatepicker>
+          </div>
+          <div class="col-md-2 mb-3">
+              <input type="text" placeholder="Usuario" class="form-control" >
+            </div>
+            <div class="col-md-2 mb-3 ">
+                
+                <select placeholder="Accion" class="custom-select" name="familia" required>
+                        <option value="1">Inicio de sesion</option>
+                        <option value="2">Cerrar Sesion</option>
+                        <option value="3">Eliminar</option>
+                        <option value="3">Crear</option>
+                        <option value="3">Editar</option>
+                        <option value="3">Imprimir</option>
+                        <option value="3">Consultar</option>
+                    </select>
+                <div class="invalid-feedback">Example invalid custom select feedback</div>
+            </div>
+          <div class="col-md-2 mb-3">
+              <button class="btn btn-info" data-toggle="modal" >Aplicar</button>
+          </div>
+        </form>
+        
+        <hr>
+    </div>
+    <form class="card">
+        <table class="table">
+            <thead>
+              <tr>
+                
+                <th scope="col">#Nomina</th>
+                <th scope="col">Usuario</th>
+                <th scope="col" style="width: 30%;">Descripcion</th>
+                <th scope="col">Modulo</th>
+                <th scope="col">Fecha y Hora</th>
+    
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td class="col-span-3">109202</td>
+                <td class="col-span-3">Carlos Fernandez</td>
+                <td class="col-span-3" >Elimino usuario pedro sosa con Nomina: 109022</td>
+                <td class="col-span-3">Usuarios</td>
+                <td class="col-span-3">10/11/2018 10:20:23</td>
+              </tr>
+            
+            </tbody>
+          </table>
+        </form>
+</div>

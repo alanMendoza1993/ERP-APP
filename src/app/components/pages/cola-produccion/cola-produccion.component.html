@@ -1,0 +1,139 @@
+<div id="contenti" class="content maxim" [style.height]=" w + 'px'" *ngIf="pageReady">
+    <!-- <h1 class="h3 mb-3">Cola de Produccion</h1> -->
+    
+    <div class="row">
+    <div class="card" id="main">
+        
+        <div class="card-body">
+            <table id="datatables-basic" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr > 
+                        <th>Estatus</th>  
+                        <th>No. Orden</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Fecha</th>
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                                <td>
+                                  
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Departamento</span>
+                                        </div>
+                                        <select #proceso class="form-control" (change)="terminar(proceso.value)">
+                                          <option value="1">Proceso</option>
+                                          <option value="2">Terminada</option>
+                                          <option value="3">Cancelada</option>
+                                          <option value="4">Espera</option>
+                                        </select>
+                                      </div>
+
+                                </td>
+                                <td>1202</td>
+                                <td>ensamble de acero</td>
+                                <td>50000</td>
+                                <td>04/12/2018</td>
+            
+                            </tr>
+                    <tr *ngFor=" let row of planingList">
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.description }}</td>
+                        <td>{{ row.status }}</td>
+                        <td>{{ row.date }}</td>
+    
+                    </tr>
+    
+    
+                </tbody>
+    
+            </table>
+        </div>
+    </div>
+    <div id="mySidenav" class="sidenav col">
+                
+        <form ngNativeValidate class="modal-body" (submit)="guardarUsuario()">              
+            <div class="card-body">
+              <div class="row">
+                <div class="row form-group col-12">
+                    <label>Cantida pedida</label>
+                    <input type="number" class="form-control" readonly placeholder="50000" aria-label="number" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="row form-group col-12">
+                    <label>Cantidad Terminada</label>
+                    <input type="number" placeholder="" class="form-control" >
+                  </div>
+                  <div class="row form-group col-12">
+                    <label>Cantidad Mermada</label>
+                    <input type="number" placeholder="" class="form-control" >
+                  </div>
+                </div>  
+            </div> 
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal" (click)="cancelarmod()">Cancelar</button>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+      </form>
+    </div>
+</div>
+     <!--  <div >
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+      </div> -->
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" [ngStyle]="{'display':display}" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmar Valores</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form ngNativeValidate class="modal-body" (submit)="guardarUsuario()">
+        
+      
+      <div class="card-body " >
+        <div class="row">
+          <div class="input-group mb-3 col">
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Cantidad Pedida</span>
+              </div>
+              <input type="number" class="form-control" readonly placeholder="50000" aria-label="number" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3 col"> 
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="datePO">Cantidad Terminada</span>
+              </div>
+              <input type="number" placeholder="" class="form-control" >
+            </div>
+            <div class="input-group mb-3 col">
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupSelect01">Cantidad Mermada</span>
+              </div>
+              <input type="number" placeholder="" class="form-control" >
+            </div>
+            
+
+          </div>
+          
+      
+  </div> 
+  <div class="modal-footer">
+      <button type="button" class="btn btn-warning" (click)="cancelarmod()">Cancelar</button>
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </div>
+</form>
+       
+      </div>
+    </div>
+  </div>
+
+  <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#exampleModal">Open Modal</button>
+
+ 
